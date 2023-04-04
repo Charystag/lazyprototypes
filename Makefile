@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/03/31 17:04:04 by nsainton         ###   ########.fr        #
+#    Updated: 2023/04/04 15:43:09 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,12 @@ CFLAGS= -Wall -Wextra -Werror
 
 GITADD= --all
 
+LFT_DIR:= Libft
+
 ARCHITECTURE= $(shell uname)
 
-export C_INCLUDE_PATH= $(INCS_DIR)
+export C_INCLUDE_PATH= $(INCS_DIR):$(LFT_DIR)/includes
+export LIBRARY_PATH= $(LFT_DIR)
 
 .DEFAULT_GOAL := all
 
@@ -50,10 +53,11 @@ makedebug:
 	@echo $(DEPS)
 
 all:
+	$(MAKE) -C $(LFT_DIR)
 	$(MAKE) $(NAME)
 
 $(NAME): $(OBJS) | $(DEPS_DIR)
-	$(CC) $(CFLAGS) $(OPT) $(GG) $(OBJS) $(PROG) -MD -MF $(DEPS_DIR)/$(PROG:.c=.d) -o $(NAME)
+	$(CC) $(CFLAGS) $(OPT) $(GG) $(OBJS) $(PROG) -MD -MF $(DEPS_DIR)/$(PROG:.c=.d) -lft -o $(NAME)
 
 $(DEPS_DIR):
 	mkdir $(DEPS_DIR)

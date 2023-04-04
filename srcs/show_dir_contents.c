@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:49:58 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 10:25:28 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:40:15 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,27 @@ void	show_dir(char *path)
 	{
 		write(1, "\n", 1);
 		if (dir->d_type != DT_DIR)
-			write(1, dir->d_name, strlen(dir->d_name));
-			printf("Not a Directory : %s\n", dir->d_name);
+			ft_printf("Not a Directory : %s\n", dir->d_name);
 		else if (! (strcmp(dir->d_name, ".") && strcmp(dir->d_name, "..")))
 			continue ;
 		else
 		{
-			printf("It is a directory : %s\n", dir->d_name);
-			printf("These are its contents\n");
-			printf("----------------------\n");
+			ft_printf("It is a directory : %s\n", dir->d_name);
+			ft_printf("These are its contents\n");
+			ft_printf("----------------------\n");
 			sprintf(d_path, "%s/%s", path, dir->d_name);
 			show_dir(d_path);
 		}
 	}
 	closedir(d);
 }
+
+/*
+static void	print_node(void *node)
+{
+	ft_printf("%s\n", (char *)node);
+}
+*/
 
 int	get_dir_entries(char *path, t_list **lst)
 {
@@ -57,33 +63,24 @@ int	get_dir_entries(char *path, t_list **lst)
 	int				error;
 
 	if (! (d = opendir(path)))
-		return ;
+		return (1);
 	while ((dir = readdir(d)))
 	{
+		sprintf(d_path, "%s/%s", path, dir->d_name);
 		if (dir->d_type != DT_DIR)
 		{
-			if (! name = ft_lstnew_cpy(dir->d_name, strlen(dir->d_name) + 1))
+			if (! (name = ft_lstnew_cpy(d_path, strlen(d_path) + 1)))
 				return (1);
-			ft_lst_add_front(lst, name);
+			ft_lstadd_front(lst, name);
 		}
 		else if (! (strcmp(dir->d_name, ".") && strcmp(dir->d_name, "..")))
 			continue ;
 		else
 		{
-			sprintf(d_path, "%s/%s", path, dir->d_name);
-			if (error = get_dir_entries(d_path, lst))
+			if ((error = get_dir_entries(d_path, lst)))
 				return (error);
 		}
 	}
 	closedir(d);
 	return (0);
-}
-
-struct dirent
-int	main(int ac, char **av)
-{
-	if (ac < 2)
-		return (EXIT_FAILURE);
-	show_dir(av[1]);
-	return (EXIT_SUCCESS);
 }

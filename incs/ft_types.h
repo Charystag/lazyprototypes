@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/03/31 16:53:36 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:42:03 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define IND "#ifndef "
 # define D "# define "
 # define END "#endif"
+# include "libft.h"
 enum e_infos
 {
 	COMPLETE,
