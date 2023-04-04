@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 15:49:20 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:07:59 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 	if (desc.tmp < 0)
 		return (EXIT_FAILURE);
 	entries = NULL;
-	if (get_dir_entries(av[1], &entries))
+	if (get_dir_entries(av[1], &entries, EXT))
 	{
 		ft_lstclear(&entries, free);
 		return (EXIT_FAILURE);

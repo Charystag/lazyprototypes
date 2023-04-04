@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 15:41:49 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:07:29 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	show_dir(char *path);
 
-int		get_dir_entries(char *path, t_list **lst);
+int		get_dir_entries(char *path, t_list **lst, t_cchar *ext);
 
 //Functions from file : cutting.c
 

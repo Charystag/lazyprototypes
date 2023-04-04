@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 11:58:18 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 14:49:09 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:08:12 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define MAX_FUNC_LINES 4
 # define FILE_NAME_SIZE 1024
 # define TMP_FILE "/tmp/tmp_header"
+# define EXT ".c"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>

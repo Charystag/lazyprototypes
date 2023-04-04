@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:49:58 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 15:40:15 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:12:04 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,22 @@ static void	print_node(void *node)
 }
 */
 
-int	get_dir_entries(char *path, t_list **lst)
+static int	wrong_extension(t_cchar *filename, t_cchar *ext)
+{
+	t_cchar	*dot;
+
+	//ft_printf("Name : %s\n", filename);
+	dot = ft_strrchr(filename, '.');
+	if (! dot)
+		return (1);
+	return (ft_strcmp(dot, ext));
+}
+
+int	get_dir_entries(char *path, t_list **lst, char *ext)
 {
 	DIR				*d;
 	struct dirent	*dir;
-	char			d_path[1000];
+	char			d_path[300];
 	t_list			*name;
 	int				error;
 
@@ -67,6 +78,8 @@ int	get_dir_entries(char *path, t_list **lst)
 	while ((dir = readdir(d)))
 	{
 		sprintf(d_path, "%s/%s", path, dir->d_name);
+		if (wrong_extension(dir->d_name, ext))
+			continue ;
 		if (dir->d_type != DT_DIR)
 		{
 			if (! (name = ft_lstnew_cpy(d_path, strlen(d_path) + 1)))
@@ -77,7 +90,7 @@ int	get_dir_entries(char *path, t_list **lst)
 			continue ;
 		else
 		{
-			if ((error = get_dir_entries(d_path, lst)))
+			if ((error = get_dir_entries(d_path, lst, ext)))
 				return (error);
 		}
 	}
