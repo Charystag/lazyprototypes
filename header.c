@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 16:07:59 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:32:16 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ int	main(int ac, char **av)
 	}
 	close(desc.tmp);
 	error = create_destination(av[2], TMP_FILE, *max);
-	remove(TMP_FILE);
+	//remove(TMP_FILE);
 	return ((error > 0) * EXIT_FAILURE);
 }

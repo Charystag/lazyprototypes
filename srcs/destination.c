@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:01:27 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/02 17:43:08 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:30:56 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,17 @@ static int format_destination(t_cint dst, FILE *tmp, t_cint max)
 	int			error;
 
 	bzero(&str, sizeof str);
+	error = 0;
 	while (getline_tstring(&str, tmp) > 0)
 	{
 		error = write_line(str.str, dst, max);
-		//dprintf(STDERR_FILENO, "This is the return of write_line : %d\n", error);
-		//dprintf(STDERR_FILENO, "This is the original line : %s\n", str.str);
+		dprintf(STDERR_FILENO, "This is the return of write_line : %d\n", error);
+		dprintf(STDERR_FILENO, "This is the original line : %s\n", str.str);
 		if (error)
+		{
+			dprintf(DEBUG_OUT, "Bonjour\n");
 			break ;
+		}
 	}
 	free(str.str);
 	return (error);
@@ -108,13 +112,20 @@ int	create_destination(t_cchar *destination_path, t_cchar *tmp_path, t_cint max)
 	char		*name;
 
 	if (stop_creation(destination_path))
+	{
+		dprintf(DEBUG_OUT, "Creation Stopped\n");
 		return (1);
+	}
 	tmp = fopen(tmp_path, "r");
 	if (! tmp)
+	{
+		dprintf(DEBUG_OUT, "Couldn't open temporary file\n");
 		return (1);
+	}
 	dst = open(destination_path, O_CREAT | O_WRONLY, 0644);
 	if (dst < 0)
 	{
+		dprintf(DEBUG_OUT, "Couldn't open destination file\n");
 		fclose(tmp);
 		return (1);
 	}
@@ -137,6 +148,8 @@ int	create_destination(t_cchar *destination_path, t_cchar *tmp_path, t_cint max)
 	//dprintf(STDERR_FILENO, "This is the return from function format_destination : %d\n", error);
 	if (! error)
 		write(dst, END, strlen(END));
+	else
+		dprintf(DEBUG_OUT, "Error while writing to file\n");
 	fclose(tmp);
 	close(dst);
 	return (error);

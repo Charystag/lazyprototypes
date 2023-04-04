@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:53:19 by nsainton          #+#    #+#             */
-/*   Updated: 2023/03/31 17:14:45 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:29:07 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	write_header_prot(t_cint fd, t_cchar *str)
 	strcat(header, "\n\n");
 	free(upper);
 	error = (write(fd, header, strlen(header)) < 1);
+	if (error)
+		dprintf(DEBUG_OUT, "Error encountered in function : %s\n", __func__);
 	free(header);
 	return (error);
 }
