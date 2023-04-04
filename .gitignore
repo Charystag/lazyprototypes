@@ -1,0 +1,14 @@
+# vim swap files #
+*.swp
+
+# Objects files #
+*.o
+
+# Dependencies files #
+*.d
+
+# Executables #
+*.out
+
+# Header executable #
+header
