@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/04/04 15:43:09 by nsainton         ###   ########.fr        #
+#    Updated: 2023/04/09 09:53:16 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME:= header
 
 PROG:= $(NAME).c
 
-SRCS_DIR:= srcs
+SRCS_DIR:= sources
 
 SRCS_SUBDIRS:= $(shell find $(SRCS_DIR) -type d)
 
@@ -22,15 +22,15 @@ SRCS_NAMES:= $(subst $(SRCS_DIR)/,, $(foreach dir, $(SRCS_SUBDIRS), $(wildcard $
 
 SRCS:= $(addprefix $(SRCS_DIR)/, $(SRCS_NAMES))
 
-INCS_DIR:= incs
+INCS_DIR:= includes
 
-OBJS_DIR:= objs
+OBJS_DIR:= objects
 
 OBJS_NAMES:= $(SRCS_NAMES:.c=.o)
 
 OBJS:= $(addprefix $(OBJS_DIR)/, $(OBJS_NAMES))
 
-DEPS_DIR:= deps
+DEPS_DIR:= dependencies
 
 DEPS:= $(patsubst %.c, $(DEPS_DIR)/%.d, $(SRCS_NAMES) $(PROG))
 
@@ -40,11 +40,11 @@ CFLAGS= -Wall -Wextra -Werror
 
 GITADD= --all
 
-LFT_DIR:= Libft
+LFT_DIR:= libft
 
 ARCHITECTURE= $(shell uname)
 
-export C_INCLUDE_PATH= $(INCS_DIR):$(LFT_DIR)/includes
+export C_INCLUDE_PATH= $(INCS_DIR):$(LFT_DIR)/$(INCS_DIR)
 export LIBRARY_PATH= $(LFT_DIR)
 
 .DEFAULT_GOAL := all

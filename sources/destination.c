@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:01:27 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 17:30:56 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/09 09:55:51 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ static int format_destination(t_cint dst, FILE *tmp, t_cint max)
 	while (getline_tstring(&str, tmp) > 0)
 	{
 		error = write_line(str.str, dst, max);
+		/*
 		dprintf(STDERR_FILENO, "This is the return of write_line : %d\n", error);
 		dprintf(STDERR_FILENO, "This is the original line : %s\n", str.str);
+		*/
 		if (error)
 		{
 			dprintf(DEBUG_OUT, "Bonjour\n");
