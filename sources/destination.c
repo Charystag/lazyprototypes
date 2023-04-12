@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:01:27 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/09 09:55:51 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:26:00 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,16 @@ static int	build_line(char *new_line, t_cchar *line, int max)
 	index = 0;
 	*new_line = 0;
 	//dprintf(STDERR_FILENO, "This is the maximum : %d\n", max);
-	//dprintf(STDERR_FILENO, "This is the line : %s\n", line);
+	//dprintf(STDERR_FILENO, "This is the line : %s", line);
 	while (isalpha(*(line + index)) || *(line + index) == '_')
 		index ++;
 	//dprintf(STDERR_FILENO, "This is the index : %d\n", index);
 	strncat(new_line, line, index);
-	max = (max - index) / 4;
-	//dprintf(STDERR_FILENO, "This is the new maximum : %d\n", max);
+	max = (max - index) / 4 + (((max - index) % 4) > 0);
+	//dprintf(STDERR_FILENO, "This is the new maximum : %d\n\n", max);
 	if (max > 10)
 		return (1);
+	//dprintf(STDERR_FILENO, "This is the line : %sThis is the max : %d\n", line, max);
 	while (max-- > 0)
 		strcat(new_line, "\t");
 	while (! isalpha(*(line + index)) && *(line + index) != '*')

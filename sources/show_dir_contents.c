@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:49:58 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 16:12:04 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:02:33 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ int	get_dir_entries(char *path, t_list **lst, char *ext)
 	while ((dir = readdir(d)))
 	{
 		sprintf(d_path, "%s/%s", path, dir->d_name);
-		if (wrong_extension(dir->d_name, ext))
-			continue ;
 		if (dir->d_type != DT_DIR)
 		{
+			if (wrong_extension(dir->d_name, ext))
+				continue ;
 			if (! (name = ft_lstnew_cpy(d_path, strlen(d_path) + 1)))
 				return (1);
 			ft_lstadd_front(lst, name);
