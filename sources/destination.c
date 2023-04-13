@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:01:27 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/12 19:26:00 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:53:56 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	build_line(char *new_line, t_cchar *line, int max)
 		index ++;
 	//dprintf(STDERR_FILENO, "This is the index : %d\n", index);
 	strncat(new_line, line, index);
-	max = (max - index) / 4 + (((max - index) % 4) > 0);
+	max = (max - index + 1) / 4;
 	//dprintf(STDERR_FILENO, "This is the new maximum : %d\n\n", max);
 	if (max > 10)
 		return (1);
