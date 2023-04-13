@@ -12,3 +12,6 @@
 
 # Header executable #
 header
+
+# Archive files #
+*.a
