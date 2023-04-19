@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/18 18:43:10 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:11:43 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	is_func_prototype(t_cchar *line)
 		return (0);
 	i = 0;
 	space = 0;
-	while (*(line + i) && ! space_or_tab (*(line + i)))
+	while (*(line + i) && *(line + i) != '\t')
 		i ++;
 	distance = i;
 	while (*(line + i) && space_or_tab(*(line + i)))
@@ -62,5 +62,6 @@ int	is_func_prototype(t_cchar *line)
 		distance += (*(line + i) == ' ') + 4 * (*(line + i) == '\t');
 		i ++;
 	}
+	printf("Line : %s\nDistance : %d\n", line, distance * space);
 	return (distance * space);
 }
