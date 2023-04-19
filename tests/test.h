@@ -18,4 +18,6 @@ int			test(static void);
 
 inline void	test(static void);
 
+inline void	*test(static void);
+
 #endif

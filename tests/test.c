@@ -11,3 +11,5 @@ int	test(static void);
 inline static int test(void);
 
 inline void	test(static void);
+
+inline void	*test(static void);
