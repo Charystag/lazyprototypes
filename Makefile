@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/04/13 17:56:46 by nsainton         ###   ########.fr        #
+#    Updated: 2023/05/05 16:45:31 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,17 @@ CFLAGS= -Wall -Wextra -Werror
 
 GITADD= --all
 
-LFT_DIR:= libft
+LIBS := libs
+
+LIBS_DIR ?= $(addprefix $(shell pwd)/, $(LIBS))
+
+LFT_DIR:= $(LIBS_DIR)/libft
+
+LFT_URL:= "git@github.com:nsainton/libft.git"
 
 ARCHITECTURE= $(shell uname)
 
+export LIBS_DIR
 export C_INCLUDE_PATH= $(INCS_DIR):$(LFT_DIR)/$(INCS_DIR)
 export LIBRARY_PATH= $(LFT_DIR)
 
@@ -52,7 +59,7 @@ export LIBRARY_PATH= $(LFT_DIR)
 makedebug:
 	@echo $(DEPS)
 
-all:
+all: | $(LFT_DIR)
 	$(MAKE) -C $(LFT_DIR)
 	$(MAKE) $(NAME)
 
@@ -68,6 +75,8 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c Makefile
 	[ -d $$arg ] || mkdir -p $$arg
 	$(CC) $(CFLAGS) $(OPT) $(GG) -MD -MF $(DEPS_DIR)/$*.d -c $< -o $@
 
+$(LFT_DIR):
+	git clone $(LFT_URL) $(LFT_DIR)
 .PHONY: clean
 clean:
 	$(RM) -r $(DEPS_DIR)
