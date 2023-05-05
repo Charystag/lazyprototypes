@@ -16,5 +16,5 @@ header
 # Archive files #
 *.a
 
-# libft folder #
-libft
+# Libs directory #
+libs

@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:08:14 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 16:07:29 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:25:02 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,7 @@ ssize_t	getline_tstring(t_string *str, FILE *source);
 
 int		write_header_prot(t_cint fd, t_cchar *str);
 
+//Functions from file : debug.c
+
+void	print(void *string);
 #endif
