@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:09:05 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 16:11:28 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:51:04 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static int	write_functions(t_cchar *src_path, t_cint dst_fd, int *max)
 	t_string	line;
 	ssize_t		n_read;
 	int			distance;
+	char		swit;
 
 	//dprintf(STDERR_FILENO, "In function : %s\n", __func__);
 	if (! (src = fopen(src_path, "r")))
@@ -96,10 +97,15 @@ static int	write_functions(t_cchar *src_path, t_cint dst_fd, int *max)
 	line.str = NULL;
 	line.size = 0;
 	distance = 0;
+	swit = 0;
 	while ((n_read = getline_tstring(&line, src)) > 0)
 	{
 		//dprintf(STDERR_FILENO, "This is the line : %s", line.str);
-		distance = is_func_prototype(line.str);
+		comment_switch(line.str, &swit, n_read);
+		if (! swit)
+			distance = is_func_prototype(line.str);
+		else
+			distance = 0;
 		*max = (distance > *max) * distance + (distance <= *max) * *max;
 		if (distance && write_function(&line, n_read, dst_fd) < 1)
 		{

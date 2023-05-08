@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:02:08 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 14:40:54 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:50:39 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,16 @@ size_t	tab_len(t_cchar *line)
 		len ++;
 	}
 	return (len + 3 * tabs);
+}
+
+void	comment_switch(const char *line, char *swit, size_t len)
+{
+	t_cchar	*beg;
+	t_cchar	*end;
+
+	beg = ft_strnstr(line, CBEG, len);
+	end = ft_strnstr(line, CEND, len);
+	if (end)
+		*swit -= (*swit != 0);
+	*swit += (beg != NULL);
 }

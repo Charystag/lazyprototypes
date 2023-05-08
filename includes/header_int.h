@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/04 15:42:03 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:52:30 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,22 @@
 # define IND "#ifndef "
 # define D "# define "
 # define END "#endif"
+# define CBEG "/*"
+# define CEND "*/"
 # include "libft.h"
+# define BUFF_SIZE 100
+# define MAX_LINE_LEN 75
+# define MAX_FUNC_LINES 4
+# define FILE_NAME_SIZE 1024
+# define TMP_FILE "/tmp/tmp_header"
+# define EXT ".c"
+# define DEBUG_OUT 2
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <ctype.h>
+# include <fcntl.h>
 enum e_infos
 {
 	COMPLETE,
