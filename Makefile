@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/05/05 16:49:11 by nsainton         ###   ########.fr        #
+#    Updated: 2023/05/08 17:13:56 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,53 @@ export LIBS_DIR
 export C_INCLUDE_PATH= $(INCS_DIR):$(LFT_DIR)/$(INCS_DIR)
 export LIBRARY_PATH= $(LFT_DIR)
 
+#Color codes for pretty printing
+BEGIN=\033[
+BLACK=30
+RED=31
+GREEN=32
+BROWN=33
+BLUE=34
+PURPLE=35
+CYAN=36
+NORMAL=0
+BOLD=1
+UNDERLINED=4
+BLINKING=5
+REVERSE=7
+END=\033[0m
+
+#Here is the definition of an ascii code
+#double backslash at the end of lines to ensure that it is not interpreted
+#as line continuation. One could also have added a space after the backslash
+#The export directive makes the header available to each submake
+#Font used is Isometric1
+define header_header
+ __     __     ______     __     ______   ______      
+/\ \  _ \ \   /\  == \   /\ \   /\__  _\ /\  ___\     
+\ \ \/ ".\ \  \ \  __<   \ \ \  \/_/\ \/ \ \  __\     
+ \ \__/".~\_\  \ \_\ \_\  \ \_\    \ \_\  \ \_____\   
+  \/_/   \/_/   \/_/ /_/   \/_/     \/_/   \/_____/   
+                                                      
+ ______   __  __     ______     __    __              
+/\__  _\ /\ \_\ \   /\  ___\   /\ "-./  \             
+\/_/\ \/ \ \  __ \  \ \  __\   \ \ \-./\ \            
+   \ \_\  \ \_\ \_\  \ \_____\  \ \_\ \ \_\           
+    \/_/   \/_/\/_/   \/_____/   \/_/  \/_/           
+                                                      
+ ______   __  __     __   __     ______     ______    
+/\  ___\ /\ \/\ \   /\ "-.\ \   /\  ___\   /\  ___\   
+\ \  __\ \ \ \_\ \  \ \ \-.  \  \ \ \____  \ \___  \  
+ \ \_\    \ \_____\  \ \_\\"\_\   \ \_____\  \/\_____\ 
+  \/_/     \/_____/   \/_/ \/_/   \/_____/   \/_____/ 
+                                                      
+endef
+export header_header
+
+.PHONY: all
+
+.SILENT:
+
 .DEFAULT_GOAL := all
 
 makedebug:
@@ -62,6 +109,9 @@ makedebug:
 all: | $(LFT_DIR)
 	$(MAKE) -C $(LFT_DIR)
 	$(MAKE) $(NAME)
+	echo "$(BEGIN)$(CYAN)m"
+	echo "$$header_header"
+	echo "$(END)"
 
 $(NAME): $(OBJS) | $(DEPS_DIR)
 	$(CC) $(CFLAGS) $(OPT) $(GG) $(OBJS) $(PROG) -MD -MF $(DEPS_DIR)/$(PROG:.c=.d) -lft -o $(NAME)
