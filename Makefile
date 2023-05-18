@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/05/08 17:13:56 by nsainton         ###   ########.fr        #
+#    Updated: 2023/05/18 17:51:06 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,12 +109,12 @@ makedebug:
 all: | $(LFT_DIR)
 	$(MAKE) -C $(LFT_DIR)
 	$(MAKE) $(NAME)
-	echo "$(BEGIN)$(CYAN)m"
-	echo "$$header_header"
-	echo "$(END)"
 
 $(NAME): $(OBJS) | $(DEPS_DIR)
 	$(CC) $(CFLAGS) $(OPT) $(GG) $(OBJS) $(PROG) -MD -MF $(DEPS_DIR)/$(PROG:.c=.d) -lft -o $(NAME)
+	echo "$(BEGIN)$(CYAN)m"
+	echo "$$header_header"
+	echo "$(END)"
 
 $(DEPS_DIR):
 	mkdir $(DEPS_DIR)
