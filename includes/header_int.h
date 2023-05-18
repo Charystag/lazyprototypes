@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_types.h                                         :+:      :+:    :+:   */
+/*   header_int.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/08 15:52:30 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:29:38 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@
 
 # define IND "#ifndef "
 # define D "# define "
+# define INC "# include "
 # define END "#endif"
 # define CBEG "/*"
 # define CEND "*/"
+# define INT "_int"
 # include "libft.h"
 # define BUFF_SIZE 100
 # define MAX_LINE_LEN 75

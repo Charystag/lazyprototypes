@@ -12,6 +12,7 @@
 
 #ifndef TEST_H
 # define TEST_H
+# include "test_int.h"
 
 //Functions from file : test.c
 int			test(static void);
