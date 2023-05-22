@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/08 15:33:54 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/05/22 12:20:31 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	right_format(t_cchar *line)
 	char	*st;
 	char	*par;
 
-	if (! isalpha(*line))
+	if (! isalpha(*line) && *line != '_')
 		return (0);
 	if (! (par = strchr(line, '(')))
 		return (0);

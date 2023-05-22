@@ -15,16 +15,18 @@
 # include "test_int.h"
 
 //Functions from file : test.c
-int			test(static void);
+int				test(static void);
 
-inline void	test(static void);
+inline void		test(static void);
 
-inline void	*test(static void);
+inline void		*test(static void);
 
-int			func_test(int a);
+int				func_test(int a);
 
-int			func_test2(int b);
+int				func_test2(int b);
 
-int			func_test8(int c);
+int				func_test8(int c);
+
+_Noreturn int	func_test9(int d);
 
 #endif
