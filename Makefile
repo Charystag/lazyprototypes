@@ -6,13 +6,11 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/05/18 17:51:06 by nsainton         ###   ########.fr        #
+#    Updated: 2023/07/23 12:19:13 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME:= header
-
-PROG:= $(NAME).c
 
 SRCS_DIR:= sources
 
@@ -32,13 +30,11 @@ OBJS:= $(addprefix $(OBJS_DIR)/, $(OBJS_NAMES))
 
 DEPS_DIR:= dependencies
 
-DEPS:= $(patsubst %.c, $(DEPS_DIR)/%.d, $(SRCS_NAMES) $(PROG))
+DEPS:= $(patsubst %.c, $(DEPS_DIR)/%.d, $(SRCS_NAMES))
 
 CC= cc
 
 CFLAGS= -Wall -Wextra -Werror
-
-GITADD= --all
 
 LIBS := libs
 
@@ -111,7 +107,7 @@ all: | $(LFT_DIR)
 	$(MAKE) $(NAME)
 
 $(NAME): $(OBJS) | $(DEPS_DIR)
-	$(CC) $(CFLAGS) $(OPT) $(GG) $(OBJS) $(PROG) -MD -MF $(DEPS_DIR)/$(PROG:.c=.d) -lft -o $(NAME)
+	$(CC) $(CFLAGS) $(OPT) $(GG) $(OBJS) -lft -o $(NAME)
 	echo "$(BEGIN)$(CYAN)m"
 	echo "$$header_header"
 	echo "$(END)"
@@ -159,8 +155,8 @@ debug:
 
 .PHONY: git
 git:
-	git add $(GITADD)
-	git commit
+	git add --all
+	git commit -m "Automatic commit on $$(date) to save current state of work"
 	git push
 
 -include $(DEPS)
