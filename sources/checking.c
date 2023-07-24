@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:02:08 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/08 16:08:27 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/23 19:23:13 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ size_t	tab_len(t_cchar *line)
 	return (len + 3 * tabs);
 }
 
-void	comment_switch(const char *line, char *swit, size_t len)
+void	comment_switch(const char *line, int *swit, size_t len)
 {
 	t_cchar	*beg;
 	t_cchar	*end;
