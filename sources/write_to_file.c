@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:09:05 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/08 15:51:04 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/23 19:24:08 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	write_functions(t_cchar *src_path, t_cint dst_fd, int *max)
 	t_string	line;
 	ssize_t		n_read;
 	int			distance;
-	char		swit;
+	int			swit;
 
 	//dprintf(STDERR_FILENO, "In function : %s\n", __func__);
 	if (! (src = fopen(src_path, "r")))
