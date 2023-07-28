@@ -6,62 +6,13 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 09:45:38 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 10:10:39 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
 //int	parsefile(char *buufer, size_t size, FILE *fstream, 
-static int	addline(struct s_str **buff, char *buffer, \
-size_t nread, int *continued)
-{
-	struct s_str	*tmp;
-
-	if (nread + (*buff)->len + 1 > (*buff)->size)
-	{
-		tmp = tstr_realloc(*buff, 2 * (*buff)->size);
-		if (tmp == NULL)
-			return (EXIT_FAILURE);
-		*buff = tmp;
-	}
-	if ((nread > 1 && *(buffer + nread - 2) != '\\') || nread == 1)
-		*continued = 0;
-	else
-		*(buffer + nread - 2) = 0;
-	tstrncat(*buff, buffer, nread);
-	return (EXIT_SUCCESS);
-}
-
-int	get_codeline(struct s_str **buff, FILE *fstream)
-{
-	size_t			linesize;
-	ssize_t			nread;
-	char			*buffer;
-	int				continued;
-
-	buffer = NULL;
-	linesize = 0;
-	tstr_reinit(*buff);
-	if (tstr_init(*buff, 100))
-		return (EXIT_FAILURE);
-	nread = getline(&buffer, &linesize, fstream);
-	continued = 1;
-	while (nread > 0 && continued)
-	{
-		if (addline(buff, buffer, (size_t)nread, &continued) == EXIT_FAILURE)
-		{
-			free(buffer);
-			return (EXIT_FAILURE);
-		}
-		if (continued)
-			nread = getline(&buffer, &linesize, fstream);
-	}
-	if (nread < 0)
-		perror("getline");
-	free(buffer);
-	return ((nread < 0) * EXIT_FAILURE);
-}
 
 int	get_prototypes_file(const char *filename, int tmp_fd, int *max_distance)
 {
@@ -92,6 +43,9 @@ int	get_prototypes_file(const char *filename, int tmp_fd, int *max_distance)
 		write(STDOUT_FILENO, buf->str, buf->len);
 	}
 	fclose(fstream);
+	if (! feof(fstream))
+		ft_dprintf(STDERR_FILENO, \
+		"Error while reading line from file : %s\n", filename);
 	free(buf);
 	/*
 	while ((nread = getline(&buffer, &size, fstream)) > 0)
@@ -135,6 +89,7 @@ int	get_prototypes(t_list **filenames, const char *tmp_file, int *max_distance)
 	return (EXIT_SUCCESS);
 }
 
+/*
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
@@ -145,3 +100,4 @@ int	main(int argc, char **argv)
 	get_prototypes_file(argv[1], 0, NULL);
 	return (EXIT_SUCCESS);
 }
+*/

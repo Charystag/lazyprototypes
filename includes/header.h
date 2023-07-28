@@ -25,8 +25,18 @@ int		get_dir_entries(char *path, t_list **lst, char *ext);
 //Functions from file : debug.c
 void	print(void *string);
 
+//Functions from file : get_codeline.c
+int		get_codeline(struct s_str **buff, FILE *fstream);
+
 //Functions from file : write_to_file.c
 int		write_to_file(t_cchar *src_path, t_cint fd);
+
+//Functions from file : get_prototypes.c
+int		get_prototypes_file(const char *filename, int tmp_fd, \
+int *max_distance);
+
+int		get_prototypes(t_list **filenames, const char *tmp_file, \
+int *max_distance);
 
 //Functions from file : writting.c
 int		write_header_prot(t_cint fd, t_cchar *str);
