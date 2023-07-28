@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 12:23:27 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:10:44 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,40 @@ int	open_parenthesis(t_cchar *function)
 	return (parenthesis);
 }
 
-static size_t	compute_distance(t_cchar *line, \
+static unsigned int	compute_distance(t_cchar *line, \
 const unsigned int end_of_types)
-{
-	(void)line;
-	(void)end_of_types;
-	return (0);
+{	
+	unsigned int	i;
+	unsigned int	distance;
+	int				inspace;
+
+	i = 0;
+	distance = 0;
+	while (i < end_of_types)
+	{
+		if (! isspace(*(line + i)))
+		{
+			distance ++;
+			inspace = 0;
+		}
+		else if (! inspace)
+		{
+			distance ++;
+			inspace = 1;
+		}
+		i ++;
+	}
+	return (distance);
 }
 
-size_t	is_func_prototype(t_cchar *line)
+unsigned int	is_func_prototype(t_cchar *line)
 {
-	char	*par;
-	size_t	whitespace;
+	unsigned int	whitespace;
 
-	if (! right_format(line))
+	if (! (whitespace = right_format(line)))
 		return (0);
+	return(compute_distance(line, whitespace));
+	/*
 	i = 0;
 	space = 0;
 	while (*(line + i) && *(line + i) != '\t')
@@ -79,4 +98,5 @@ size_t	is_func_prototype(t_cchar *line)
 	}
 	//printf("Line : %s\nDistance : %d\n", line, distance * space);
 	return (distance * space);
+	*/
 }
