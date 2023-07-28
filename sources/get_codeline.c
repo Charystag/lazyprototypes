@@ -6,22 +6,22 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 10:03:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 12:22:16 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:58:15 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
 /*
-	We check for nread + len + 2 to keep one slot available for the
-	semicolomn if we encountered a function prototype
+	We check for nread + len + 3 to keep two slots available for the
+	semicolomn and the line return if we encountered a function prototype
 */
 static int	addline(struct s_str **buff, char *buffer, size_t nread, \
 int *continued)
 {
 	struct s_str	*tmp;
 
-	if (nread + (*buff)->len + 2 > (*buff)->size)
+	if (nread + (*buff)->len + 3 > (*buff)->size)
 	{
 		tmp = tstr_realloc(*buff, 2 * (*buff)->size);
 		if (tmp == NULL)
