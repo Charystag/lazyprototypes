@@ -6,13 +6,11 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 10:10:39 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 11:49:25 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-//int	parsefile(char *buufer, size_t size, FILE *fstream, 
 
 int	get_prototypes_file(const char *filename, int tmp_fd, int *max_distance)
 {
@@ -33,20 +31,25 @@ int	get_prototypes_file(const char *filename, int tmp_fd, int *max_distance)
 		return (EXIT_FAILURE);
 	}
 	(void)max_distance;
-	(void)swit;
-	(void)tmp_fd;
 	i = 0;
 	while (! get_codeline(&buf, fstream))
 	{
+		if (comment_switch(buf->str, &swit, buf->len) || \
+		! is_func_prototype(buf->str))
+			continue ;
+		if (write(tmp_fd, buf->str, buf->len) < 0)
+			break ;
+		/*
 		i ++;
 		ft_printf("Line : %u\n", i);
 		write(STDOUT_FILENO, buf->str, buf->len);
+		*/
 	}
 	fclose(fstream);
 	if (! feof(fstream))
 		ft_dprintf(STDERR_FILENO, \
-		"Error while reading line from file : %s\n", filename);
-	free(buf);
+		"Error while dealing with file : %s\n", filename);
+	tstr_delete(buf);
 	/*
 	while ((nread = getline(&buffer, &size, fstream)) > 0)
 	{
@@ -80,8 +83,13 @@ int	get_prototypes(t_list **filenames, const char *tmp_file, int *max_distance)
 		tmp_max_distance = 0;
 		filename = get_filename((*filenames)->content);
 		dprintf(tmp_fd, "//Functions from file : %s\n", filename);
-		get_prototypes_file((char *)(*filenames)->content, \
-		tmp_fd, &tmp_max_distance);
+		if (get_prototypes_file((char *)(*filenames)->content, \
+		tmp_fd, &tmp_max_distance))
+		{
+			ft_lstclear(filenames, free);
+			close(tmp_fd);
+			return (EXIT_FAILURE);
+		}
 		ft_lstdel_front(filenames, free);
 		if (tmp_max_distance > *max_distance)
 			*max_distance = tmp_max_distance;
