@@ -6,34 +6,95 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/24 12:18:38 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 09:45:38 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
 //int	parsefile(char *buufer, size_t size, FILE *fstream, 
+static int	addline(struct s_str **buff, char *buffer, \
+size_t nread, int *continued)
+{
+	struct s_str	*tmp;
+
+	if (nread + (*buff)->len + 1 > (*buff)->size)
+	{
+		tmp = tstr_realloc(*buff, 2 * (*buff)->size);
+		if (tmp == NULL)
+			return (EXIT_FAILURE);
+		*buff = tmp;
+	}
+	if ((nread > 1 && *(buffer + nread - 2) != '\\') || nread == 1)
+		*continued = 0;
+	else
+		*(buffer + nread - 2) = 0;
+	tstrncat(*buff, buffer, nread);
+	return (EXIT_SUCCESS);
+}
+
+int	get_codeline(struct s_str **buff, FILE *fstream)
+{
+	size_t			linesize;
+	ssize_t			nread;
+	char			*buffer;
+	int				continued;
+
+	buffer = NULL;
+	linesize = 0;
+	tstr_reinit(*buff);
+	if (tstr_init(*buff, 100))
+		return (EXIT_FAILURE);
+	nread = getline(&buffer, &linesize, fstream);
+	continued = 1;
+	while (nread > 0 && continued)
+	{
+		if (addline(buff, buffer, (size_t)nread, &continued) == EXIT_FAILURE)
+		{
+			free(buffer);
+			return (EXIT_FAILURE);
+		}
+		if (continued)
+			nread = getline(&buffer, &linesize, fstream);
+	}
+	if (nread < 0)
+		perror("getline");
+	free(buffer);
+	return ((nread < 0) * EXIT_FAILURE);
+}
+
 int	get_prototypes_file(const char *filename, int tmp_fd, int *max_distance)
 {
-	char	*buffer;
-	size_t	size;
-	FILE	*filestream;
-	ssize_t	nread;
-	int		swit;
+	FILE			*fstream;
+	int				swit;
+	struct s_str	*buf;
+	unsigned int	i;
 
-	size = LINE_MAX_SIZE;
-	if ((buffer = malloc(size * sizeof * buffer)) == NULL)
+	if ((buf = calloc(1, sizeof * buf)) == NULL)
 	{
-		dprintf(STDERR_FILENO, "Couldn't allocate buffer of size : %zd\n", \
-		size);
+		dprintf(STDERR_FILENO, \
+		"Couldn't allocate struct s_str of size : 1\n");
 		return (EXIT_FAILURE);
-	if ((filestream = fopen(filename, "r")) == NULL)
+	}
+	if ((fstream = fopen(filename, "r")) == NULL)
 	{
 		ft_dprintf(STDERR_FILENO, "Couldn't open file : %s\n", filename);
 		return (EXIT_FAILURE);
 	}
+	(void)max_distance;
+	(void)swit;
+	(void)tmp_fd;
+	i = 0;
+	while (! get_codeline(&buf, fstream))
+	{
+		i ++;
+		ft_printf("Line : %u\n", i);
+		write(STDOUT_FILENO, buf->str, buf->len);
+	}
+	fclose(fstream);
+	free(buf);
 	/*
-	while ((nread = getline(&buffer, &size, filestream)) > 0)
+	while ((nread = getline(&buffer, &size, fstream)) > 0)
 	{
 		swit = comment_switch(buffer, &swit, (size_t)nread);
 		if (! isprototype(buffer) || swit)
@@ -42,6 +103,15 @@ int	get_prototypes_file(const char *filename, int tmp_fd, int *max_distance)
 	return (EXIT_SUCCESS);
 }
 
+static char	*get_filename(void *content)
+{
+	char	*filename;
+
+	filename = ft_strrchr((char *)content, '/');
+	if (! filename)
+		return ((char *)content);
+	return (filename + 1);
+}
 
 int	get_prototypes(t_list **filenames, const char *tmp_file, int *max_distance)
 {
@@ -54,13 +124,24 @@ int	get_prototypes(t_list **filenames, const char *tmp_file, int *max_distance)
 	while (*filenames != NULL)
 	{
 		tmp_max_distance = 0;
-		filename = getname((*filenames)->content);
+		filename = get_filename((*filenames)->content);
 		dprintf(tmp_fd, "//Functions from file : %s\n", filename);
-		get_prototypes_file(tmp_fd, (char *)(*filenames)->content, \
-		&tmp_max_distance)
+		get_prototypes_file((char *)(*filenames)->content, \
+		tmp_fd, &tmp_max_distance);
 		ft_lstdel_front(filenames, free);
 		if (tmp_max_distance > *max_distance)
 			*max_distance = tmp_max_distance;
 	}
+	return (EXIT_SUCCESS);
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		ft_dprintf(STDERR_FILENO, "Usage: ./print_code filepath\n");
+		return (EXIT_FAILURE);
+	}
+	get_prototypes_file(argv[1], 0, NULL);
 	return (EXIT_SUCCESS);
 }
