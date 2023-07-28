@@ -6,17 +6,18 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/22 12:20:31 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 12:23:27 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static int	right_format(t_cchar *line)
+static unsigned int	right_format(t_cchar *line)
 {
-	char	*main;
-	char	*st;
-	char	*par;
+	char			*main;
+	char			*st;
+	char			*par;
+	unsigned int	whitespace_index;
 
 	if (! isalpha(*line) && *line != '_')
 		return (0);
@@ -25,9 +26,16 @@ static int	right_format(t_cchar *line)
 	if ((st = strstr(line, "static")) && st < par)
 		return (0);
 	main = strchr(line, 'm');
-	if (main && ! strncmp(main, "main", strlen("main")))
+	if (main && main < par && ! strncmp(main, "main", strlen("main")))
 		return (0);
-	return (1);
+	whitespace_index = 0;
+	while (par != line && ! whitespace_index)
+	{
+		if (isspace(*par) && ! isspace(*(par - 1)))
+			whitespace_index = (par - line);
+		par --;
+	}
+	return (whitespace_index);
 }
 
 int	open_parenthesis(t_cchar *function)
@@ -43,11 +51,18 @@ int	open_parenthesis(t_cchar *function)
 	return (parenthesis);
 }
 
-int	is_func_prototype(t_cchar *line)
+static size_t	compute_distance(t_cchar *line, \
+const unsigned int end_of_types)
 {
-	int	i;
-	int	space;
-	int	distance;
+	(void)line;
+	(void)end_of_types;
+	return (0);
+}
+
+size_t	is_func_prototype(t_cchar *line)
+{
+	char	*par;
+	size_t	whitespace;
 
 	if (! right_format(line))
 		return (0);
