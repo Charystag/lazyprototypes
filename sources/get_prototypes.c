@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 10:34:11 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/30 16:38:09 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,10 @@ unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, unsigned i
 	char			*filename;
 	int				tmp_fd;
 	unsigned int	tmp_max_distance;
+	int				err;
 
-	/*
 	if ((tmp_fd = open(tmp_file, O_CREAT | O_WRONLY | O_TRUNC, 0600)) == -1)
 		return (EXIT_FAILURE);
-	*/
-	(void)tmp_file;
-	tmp_fd = 1;
 	while (*filenames != NULL)
 	{
 		tmp_max_distance = 0;
@@ -108,7 +105,9 @@ unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, unsigned i
 		if (tmp_max_distance > *max_distance)
 			*max_distance = tmp_max_distance;
 	}
-	return (EXIT_SUCCESS);
+	if ((err = close(tmp_fd)) == -1)
+		dprintf(STDERR_FILENO, "Error while closing file : %s\n", TMP_FILE);
+	return (err);
 }
 
 int	main(int argc, char **argv)
@@ -129,7 +128,13 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	//get_prototypes_file(argv[1], 1, &max_distance);
-	get_prototypes(&entries, NULL, &max_distance);
+	if (get_prototypes(&entries, TMP_FILE, &max_distance))
+	{
+		remove(TMP_FILE);
+		return (1);
+	}
+	if (write_prototypes(TMP_FILE, argv[2], max_distance))
+		return (1);
 	ft_printf("The max distance for directory %s is %u\n", argv[1], max_distance);
 	return (EXIT_SUCCESS);
 }

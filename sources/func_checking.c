@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 10:58:48 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/30 16:01:14 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ unsigned int	compute_distance(t_cchar *line, const unsigned int end_of_types)
 	distance = 0;
 	while (i < end_of_types)
 	{
-		if (! isspace(*(line + i)))
+		if (! space_or_tab(*(line + i)))
 		{
 			distance ++;
 			inspace = 0;

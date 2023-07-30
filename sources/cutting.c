@@ -6,28 +6,13 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:11:52 by nsainton          #+#    #+#             */
-/*   Updated: 2023/03/31 17:18:58 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:38:28 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static size_t	next_coma(t_cchar *line, const size_t max)
-{
-	char	*coma;
-	size_t	next_coma;
-
-	//printf("Line : %s\n", line);
-	coma = strchr(line, ',');
-	next_coma = 0;
-	while (coma && (size_t)(coma - line) < max)
-	{
-		next_coma = coma - line;
-		coma = strchr(line + next_coma + 1, ',');
-	}
-	return (next_coma + 2);
-}
-
+/*
 void	cat_line_ret(char *new_line, t_cchar *line, size_t max)
 {
 	int		index;
@@ -47,3 +32,4 @@ void	cat_line_ret(char *new_line, t_cchar *line, size_t max)
 	}
 	strcat(new_line, line);
 }
+*/

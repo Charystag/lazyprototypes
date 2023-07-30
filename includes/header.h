@@ -15,13 +15,20 @@
 # include "header_int.h"
 
 //Functions from file : cutting.c
-void			cat_line_ret(char *new_line, t_cchar *line, size_t max);
-
 //Functions from file : format_prototype.c
+char			*format_prototype(const char *prototype, \
+const unsigned int max_distance, \
+unsigned int *prototype_len);
+
 //Functions from file : show_dir_contents.c
 void			show_dir(char *path);
 
 int				get_dir_entries(char *path, t_list **lst, char *ext);
+
+//Functions from file : write_prototypes.c
+int				write_prototypes(const char *source_file, \
+const char *destination_file, \
+const unsigned int max_distance);
 
 //Functions from file : debug.c
 void			print(void *string);
@@ -61,7 +68,9 @@ t_cchar *tmp_path, t_cint max);
 //Functions from file : checking.c
 int				space_or_tab(int c);
 
-size_t			tab_len(t_cchar *line);
+size_t			tabslen(t_cchar *line);
+
+size_t			tabsnlen(t_cchar *line, const size_t n);
 
 int				comment_switch(const char *line, int *swit, \
 size_t len);

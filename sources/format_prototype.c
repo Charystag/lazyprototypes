@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 10:50:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 14:14:37 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/30 16:28:58 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,43 +27,69 @@ unsigned int *tabs_number)
 	{
 		if (! isspace(*parenthesis) && isspace(*(parenthesis - 1)))
 			break ;
-		parenthesis --;
+		parenthesis--;
 	}
 	func_name = parenthesis;
 	while (parenthesis != prototype)
 	{
 		if (isspace(*parenthesis) && !isspace(*(parenthesis - 1)))
 			break ;
-		parenthesis --;
+		parenthesis--;
 	}
 	*end_of_types = parenthesis - prototype;
 	distance = compute_distance(prototype, *end_of_types);
 	*tabs_number = (max_distance / TABLEN - distance / TABLEN + 1);
-	return (distance + *tabs_number + strlen(func_name));
+	return (distance + *tabs_number + compute_distance(func_name, strlen(func_name)));
 }
 
-static void	fill_prototype(char *to_format, const char *prototype, \
-unsigned int end_of_types)
+static unsigned int	add_formated_string(char *to_format, \
+const char *base_string, unsigned int limit)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	j = strlen(to_format);
+	i = 0;
+	if (! limit)
+		limit = UINT_MAX;
+	while (i < limit && *(base_string + i))
+	{
+		if (! space_or_tab(*(base_string + i)))
+		{
+			*(to_format + j) = *(base_string + i);
+			j ++;
+		}
+		else if (! space_or_tab(*(base_string + i + 1)))
+		{
+			*(to_format + j) = ' ';
+			j ++;
+		}
+		i ++;
+	}
+	return (j);
+}
+
+static unsigned int	fill_prototype(char *to_format, \
+const char *prototype, unsigned int end_of_types, \
+const unsigned int tabs_number)
 {
 	unsigned int	i;
 	unsigned int	j;
 
 	i = 0;
-	j = 0;
-	while (i < end_of_types)
-	{
-		if (! isspace(*(prototype + i)))
-			*(to_format + j++) = *(prototype + i);
-		else if (! isspace (*(prototype + i + 1)))
-			*(to_format + j++) = ' ';
-		i++;
-	}
+	j = add_formated_string(to_format, prototype, end_of_types);
 	while (isspace(*(prototype + end_of_types)))
 		end_of_types++;
-	strcpy(to_format + j, prototype + end_of_types);
+	while (i++ < tabs_number)
+	{
+		*(to_format + j) = '\t';
+		j ++;
+	}
+	return (add_formated_string(to_format, \
+	prototype + end_of_types, 0));
 }
 
-char	*format_prototype(const char *prototype, const unsigned int max_distance)
+char	*format_prototype(const char *prototype, const unsigned int max_distance, unsigned int *prototype_len)
 {
 	char			*formated_proto;
 	unsigned int	len;
@@ -76,6 +102,7 @@ char	*format_prototype(const char *prototype, const unsigned int max_distance)
 	formated_proto = calloc(len + 1, sizeof * formated_proto);
 	if (! formated_proto)
 		return (NULL);
-	fill_prototype(formated_proto, prototype, end_of_types);
+	*prototype_len = len;
+	fill_prototype(formated_proto, prototype, end_of_types, tabs_number);
 	return (formated_proto);
 }
