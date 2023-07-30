@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:01:59 by nsainton          #+#    #+#             */
-/*   Updated: 2023/05/22 12:22:15 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:22:09 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,8 @@ int		func_test7(int b);
 int	func_test8(int c);
 
 _Noreturn int	func_test9(int d);
+
+int					func_test10(int a, static int c);
+
+extern		unsigned 		int	func_test11(int a);
+
