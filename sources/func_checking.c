@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 16:10:44 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/30 10:58:48 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ int	open_parenthesis(t_cchar *function)
 	return (parenthesis);
 }
 
-static unsigned int	compute_distance(t_cchar *line, \
-const unsigned int end_of_types)
+unsigned int	compute_distance(t_cchar *line, const unsigned int end_of_types)
 {	
 	unsigned int	i;
 	unsigned int	distance;

@@ -17,6 +17,7 @@
 //Functions from file : cutting.c
 void			cat_line_ret(char *new_line, t_cchar *line, size_t max);
 
+//Functions from file : format_prototype.c
 //Functions from file : show_dir_contents.c
 void			show_dir(char *path);
 
@@ -47,6 +48,9 @@ ssize_t			getline_tstring(t_string *str, FILE *source);
 //Functions from file : header.c
 //Functions from file : func_checking.c
 int				open_parenthesis(t_cchar *function);
+
+unsigned int	compute_distance(t_cchar *line, \
+const unsigned int end_of_types);
 
 unsigned int	is_func_prototype(t_cchar *line);
 

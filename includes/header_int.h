@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 10:06:47 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/30 11:17:20 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define BUFF_SIZE 100
 # define MAX_LINE_LEN 75
 # define MAX_FUNC_LINES 4
+# define TABLEN 4
 # define FILE_NAME_SIZE 1024
 # define TMP_FILE "/tmp/tmp_header"
 # define EXT ".c"
