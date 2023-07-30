@@ -6,44 +6,54 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:41:48 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 16:51:04 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/30 17:54:52 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static unsigned int	next_coma(t_cchar *line, const unsigned int max)
+static unsigned int	find_next_sep(t_cchar *line, const unsigned int max, \
+const int separator)
 {
-	char			*coma;
-	unsigned int	next_coma;
+	char			*sep;
+	unsigned int	next_sep;
 
-	//printf("Line : %s\n", line);
-	coma = strchr(line, ',');
-	next_coma = 0;
-	while (coma && tabsnlen(line, coma - line) < max)
+	sep = strchr(line, separator);
+	next_sep = 0;
+	while (sep && tabsnlen(line, sep - line) < max)
 	{
-		next_coma = coma - line;
-		coma = strchr(line + next_coma + 1, ',');
+		next_sep = sep - line;
+		sep = strchr(line + next_sep + 1, separator);
 	}
-	return (next_coma);
+	return (next_sep);
 }
 
-static void	slice_line(char *line, const unsigned int max, \
-unsigned int lines_count)
+static unsigned int	next_sep(t_cchar *line, const unsigned int max)
+{
+	unsigned int	cutting_point;
+
+	cutting_point = find_next_sep(line, max, ',');
+	if (! cutting_point && tabslen(line + cutting_point) >= max)
+		cutting_point = find_next_sep(line, max, ' ');
+	if (! cutting_point && tabslen(line + cutting_point) >= max)
+		cutting_point = find_next_sep(line, max, '\t');
+	return (cutting_point);
+}
+
+static void	slice_line(char *line, const unsigned int max)
 {
 	unsigned int	start;
 	unsigned int	slice_index;
 
 	start = 0;
-	while (lines_count > 1)
+	while (strlen(line + start) > max)
 	{
-		slice_index = next_coma(line, max) + 1;
+		slice_index = next_sep(line + start, max) + 1;
 		memmove(line + start + slice_index + 3, line + start + slice_index + 1, \
 		strlen(line + start + slice_index + 1) + 1);
-		*(line + slice_index + 1) = '\\';
-		*(line + slice_index + 2) = '\n';
-		start = slice_index + 3;
-		lines_count --;
+		*(line + start + slice_index + 1) = '\\';
+		*(line + start + slice_index + 2) = '\n';
+		start += slice_index + 3;
 	}
 }
 
@@ -67,7 +77,7 @@ const unsigned int max_distance)
 	}
 	lines_count = tabslen(prototype) / MAX_LINE_LEN + 1;
 	if (lines_count > 1 && \
-	! (tmp = realloc(prototype, proto_len + 2 * (lines_count - 1) + 1)))
+	! (tmp = realloc(prototype, proto_len + 4 * (lines_count - 1) + 1)))
 	{
 		dprintf(STDERR_FILENO, "Reallocation error\n");
 		return (1);
@@ -75,9 +85,9 @@ const unsigned int max_distance)
 	if (lines_count > 1)
 	{
 		prototype = tmp;
-		slice_line(prototype, MAX_LINE_LEN, lines_count);
+		slice_line(prototype, MAX_LINE_LEN);
 	}
-	err = (write(ofd, prototype, proto_len + 2 * (lines_count - 1)) < 1);
+	err = (write(ofd, prototype, strlen(prototype)) < 1);
 	free(prototype);
 	return (err);
 }

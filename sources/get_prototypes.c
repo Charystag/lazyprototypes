@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 16:38:09 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/30 17:09:39 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,6 @@ int	main(int argc, char **argv)
 	}
 	if (write_prototypes(TMP_FILE, argv[2], max_distance))
 		return (1);
-	ft_printf("The max distance for directory %s is %u\n", argv[1], max_distance);
+	//ft_printf("The max distance for directory %s is %u\n", argv[1], max_distance);
 	return (EXIT_SUCCESS);
 }
