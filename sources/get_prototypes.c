@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 19:46:46 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/30 10:34:11 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@ unsigned int *max_distance)
 	return (EXIT_SUCCESS);
 }
 
-static int	check_errors_and_delete(struct s_str *buf, FILE *fstream)
-{
-	int	err;
-
-	err = EXIT_SUCCESS;
-	if (! feof(fstream))
-		err = EXIT_FAILURE;
-	fclose(fstream);
-	tstr_del(buf);
-	return (err);
-}
-
 static int	initialize(struct s_str **buf, FILE **fstream, \
 const char *filename)
 {
@@ -49,15 +37,15 @@ const char *filename)
 	{
 		dprintf(STDERR_FILENO, \
 		"Couldn't allocate struct s_str of size : 1\n");
-		return (EXIT_FAILURE);
+		return (1);
 	}
 	if ((*fstream = fopen(filename, "r")) == NULL)
 	{
 		ft_dprintf(STDERR_FILENO, "Couldn't open file : %s\n", filename);
 		tstr_del(*buf);
-		return (EXIT_FAILURE);
+		return (1);
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 int	get_prototypes_file(const char *filename, int tmp_fd, unsigned int *max_distance)
@@ -65,20 +53,21 @@ int	get_prototypes_file(const char *filename, int tmp_fd, unsigned int *max_dist
 	FILE			*fstream;
 	int				swit;
 	struct s_str	*buf;
-	int				err;
+	int				eof;
 
 	if (initialize(&buf, &fstream, filename))
-		return (EXIT_FAILURE);
+		return (1);
 	swit = 0;
 	while (! get_codeline(&buf, fstream))
 	{
 		if (write_prototype(buf, &swit, tmp_fd, max_distance))
 			break ;
 	}
-	err = check_errors_and_delete(buf, fstream);
-	if (err)
+	if (! (eof = feof(fstream)))
 		ft_dprintf(STDERR_FILENO, "Error while dealing with file : %s\n", filename);
-	return (EXIT_SUCCESS);
+	fclose(fstream);
+	tstr_del(buf);
+	return ((eof == 0));
 }
 
 static char	*get_filename(void *content)
@@ -97,8 +86,12 @@ unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, unsigned i
 	int				tmp_fd;
 	unsigned int	tmp_max_distance;
 
+	/*
 	if ((tmp_fd = open(tmp_file, O_CREAT | O_WRONLY | O_TRUNC, 0600)) == -1)
 		return (EXIT_FAILURE);
+	*/
+	(void)tmp_file;
+	tmp_fd = 1;
 	while (*filenames != NULL)
 	{
 		tmp_max_distance = 0;
@@ -118,10 +111,10 @@ unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, unsigned i
 	return (EXIT_SUCCESS);
 }
 
-/*
 int	main(int argc, char **argv)
 {
 	unsigned int	max_distance;
+	t_list			*entries;
 
 	if (argc != 2)
 	{
@@ -129,8 +122,14 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	max_distance = 0;
-	get_prototypes_file(argv[1], 1, &max_distance);
-	ft_printf("The max distance for file %s is %u\n", argv[1], max_distance);
+	entries = NULL;
+	if (get_dir_entries(argv[1], &entries, EXT))
+	{
+		ft_dprintf(STDERR_FILENO, "Error while getting entries from directory : %s\n", argv[1]);
+		return (1);
+	}
+	//get_prototypes_file(argv[1], 1, &max_distance);
+	get_prototypes(&entries, NULL, &max_distance);
+	ft_printf("The max distance for directory %s is %u\n", argv[1], max_distance);
 	return (EXIT_SUCCESS);
 }
-*/
