@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:02:38 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 12:51:28 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:36:31 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ char **includes)
 	char	*header_prot;
 	int		err;
 
-	if ((header_prot = ft_strmapi(header, protect)) == NULL)
+	if ((header_prot = \
+	ft_strmapi(get_filename((char *)header), protect)) == NULL)
 		return (1);
 	err = 0;
 	if (write(header_fd, HEADER, strlen(HEADER)) < 1)

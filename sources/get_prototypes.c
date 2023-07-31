@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 12:46:33 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:35:49 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ int	get_prototypes_file(const char *filename, int tmp_fd, unsigned int *max_dist
 	return ((eof == 0));
 }
 
-static char	*get_filename(void *content)
+char	*get_filename(char *content)
 {
 	char	*filename;
 
 	filename = ft_strrchr((char *)content, '/');
 	if (! filename)
-		return ((char *)content);
+		return (content);
 	return (filename + 1);
 }
 
@@ -92,7 +92,7 @@ unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, unsigned i
 	while (*filenames != NULL)
 	{
 		tmp_max_distance = 0;
-		filename = get_filename((*filenames)->content);
+		filename = get_filename((char *)(*filenames)->content);
 		dprintf(tmp_fd, "//Functions from file : %s\n", filename);
 		if (get_prototypes_file((char *)(*filenames)->content, \
 		tmp_fd, &tmp_max_distance))
@@ -107,51 +107,5 @@ unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, unsigned i
 	}
 	if ((err = close(tmp_fd)) == -1)
 		dprintf(STDERR_FILENO, "Error while closing file : %s\n", TMP_FILE);
-	return (err);
-}
-
-
-static _Noreturn void usage(int status)
-{
-	char	*program_name;
-
-	program_name = PROG_NAME;
-	printf ("\
-Usage: %s SRCS_FOLDER DESTINATION_FILE [FILES_TO_INCLUDE]\n", program_name);
-	fputs("With no FILES_TO_INCLUDE files will have to be manually included\n", \
-	stdout);
-	printf("\
-Examples :\n\
-  	%s sources includes/prototypes.h include1.h include2.h\n\
-	%s sources includes/prototypes.h\n\
-", program_name, program_name);
-	exit(status);
-}
-
-int	main(int argc, char **argv)
-{
-	unsigned int	max_distance;
-	t_list			*entries;
-	int				err;
-
-	if (argc <= 2)
-		usage(1);
-	max_distance = 0;
-	entries = NULL;
-	if (get_dir_entries(argv[1], &entries, EXT))
-	{
-		ft_dprintf(STDERR_FILENO, "Error while getting entries from directory : %s\n", argv[1]);
-		return (1);
-	}
-	err = 0;
-	if(err || get_prototypes(&entries, TMP_FILE, &max_distance))
-		err = 1;
-	if (err || write_prototypes(TMP_FILE, argv[2], max_distance, argv + 3))
-		err = 1;
-	if (remove(TMP_FILE))
-	{
-		ft_dprintf(STDERR_FILENO, "Couldn't remove temporary file\n");
-		err = 1;
-	}
 	return (err);
 }

@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 16:01:14 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:26:57 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,19 +83,4 @@ unsigned int	is_func_prototype(t_cchar *line)
 	if (! (whitespace = right_format(line)))
 		return (0);
 	return(compute_distance(line, whitespace));
-	/*
-	i = 0;
-	space = 0;
-	while (*(line + i) && *(line + i) != '\t')
-		i ++;
-	distance = i;
-	while (*(line + i) && space_or_tab(*(line + i)))
-	{
-		space = 1;
-		distance += (*(line + i) == ' ') + 4 * (*(line + i) == '\t');
-		i ++;
-	}
-	//printf("Line : %s\nDistance : %d\n", line, distance * space);
-	return (distance * space);
-	*/
 }
