@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 12:21:17 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:46:33 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,24 @@ unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, unsigned i
 	return (err);
 }
 
+
+static _Noreturn void usage(int status)
+{
+	char	*program_name;
+
+	program_name = PROG_NAME;
+	printf ("\
+Usage: %s SRCS_FOLDER DESTINATION_FILE [FILES_TO_INCLUDE]\n", program_name);
+	fputs("With no FILES_TO_INCLUDE files will have to be manually included\n", \
+	stdout);
+	printf("\
+Examples :\n\
+  	%s sources includes/prototypes.h include1.h include2.h\n\
+	%s sources includes/prototypes.h\n\
+", program_name, program_name);
+	exit(status);
+}
+
 int	main(int argc, char **argv)
 {
 	unsigned int	max_distance;
@@ -117,10 +135,7 @@ int	main(int argc, char **argv)
 	int				err;
 
 	if (argc <= 2)
-	{
-		ft_dprintf(STDERR_FILENO, "Usage: ./print_code sources_folder dest_file includes\n");
-		return (EXIT_FAILURE);
-	}
+		usage(1);
 	max_distance = 0;
 	entries = NULL;
 	if (get_dir_entries(argv[1], &entries, EXT))

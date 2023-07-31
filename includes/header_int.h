@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 17:09:21 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:44:20 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define FILE_NAME_SIZE 1024
 # define TMP_FILE "/tmp/tmp_header"
 # define EXT ".c"
+# define PROG_NAME "header"
 # define DEBUG_OUT 2
 # include <stdio.h>
 # include <stdlib.h>

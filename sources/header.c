@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/12 19:39:18 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:43:46 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ to create as the last argument\n");
 path_to_project/includes/functions.h\n");
 		return (EXIT_FAILURE);
 }
+
 
 int	main(int ac, char **av)
 {
