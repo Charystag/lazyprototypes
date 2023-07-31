@@ -116,6 +116,11 @@ Now, go on and use the script as you like. It is yours as soon as it arrives on 
 for me to fix them as soon as I can (or if you want to go through the code by yourself feel more than free to fork, fix and
 make a pull request for the change).
 
+### Wait ! What if I don't want it anymore ?
+
+If you want the header script to go, just run `make uninstall` in the script folder and you will be all set. Thanks for
+installing it in the first place.
+
 ### Acknowledgements
 
 Thanks to rmechety for having provided his version of a Headermaker script written in cpp. This encouraged me to provide my
