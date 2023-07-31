@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/07/31 16:37:43 by nsainton         ###   ########.fr        #
+#    Updated: 2023/07/31 18:46:11 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,10 @@ LFT_DIR:= $(LIBS_DIR)/libft
 LFT_URL:= "git@github.com:nsainton/libft.git"
 
 ARCHITECTURE= $(shell uname)
+
+TABLEN := 4
+
+EXT := .c
 
 export LIBS_DIR
 export C_INCLUDE_PATH= $(INCS_DIR):$(LFT_DIR)/$(INCS_DIR)
@@ -95,8 +99,6 @@ export header_header
 
 .PHONY: all
 
-.SILENT:
-
 .DEFAULT_GOAL := all
 
 makedebug:
@@ -119,7 +121,8 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c Makefile
 	[ -d $(@D) ] || mkdir -p $(@D)
 	arg="$$(dirname $(DEPS_DIR)/$*)"; \
 	[ -d $$arg ] || mkdir -p $$arg
-	$(CC) $(CFLAGS) $(OPT) $(GG) -MD -MF $(DEPS_DIR)/$*.d -c $< -o $@
+	$(CC) $(CFLAGS) $(OPT) $(GG) -MD -MF $(DEPS_DIR)/$*.d -c $< \
+	-DTABLEN=$(TABLEN) -DEXT='"$(EXT)"' -o $@
 
 $(LFT_DIR):
 	git clone $(LFT_URL) $(LFT_DIR)
