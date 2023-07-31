@@ -12,21 +12,44 @@
 
 #ifndef TEST_H
 # define TEST_H
-# include "test_int.h"
-
 //Functions from file : test.c
-int				test(static void);
+int												test(void static a);
 
-inline void		test(static void);
+void											another_func(void *bonjour);
 
-inline void		*test(static void);
+struct s_no_name_idea							\
+func_test(struct s_i_dont_exist identifier);
 
-int				func_test(int a);
+extern int										\
+test_function(extern int *b);
 
-int				func_test2(int b);
+int												func_test(int a);
 
-int				func_test8(int c);
+int												func_test2(int b);
 
-_Noreturn int	func_test9(int d);
+int												func_test8(int c);
+
+_Noreturn int									func_test9(int d);
+
+int												func_test10(int a, \
+static int c);
+
+extern unsigned int								func_test11(int a);
+
+int												func_test12(int a, \
+static void *b);
+
+int												func_test13(int a, \
+static void *b);
+
+struct s_new_type								func_test14(unsigned int *a, \
+uintptr_t (*func)(const char *a, unsigned int **b, \
+const struct s_another_type boubou), int c);
+
+struct s_very_very_long_and_annoying_type_name	func_test15(unsigned int *a, \
+int b);
+
+struct s_splitted_func_prototype				func_test16(unsigned int *a, \
+struct s_type b, struct s_another_var c, );
 
 #endif

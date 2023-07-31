@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:01:59 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 17:42:57 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:42:05 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,3 +144,11 @@ struct s_very_very_long_and_annoying_type_name       	func_test15(unsigned int *
 	/*code here*/
 }
 
+struct s_splitted_func_prototype	      func_test16(\
+unsigned int *a, \
+struct s_type b, \
+struct s_another_var c, \
+)
+{
+	/*code here*/
+}
