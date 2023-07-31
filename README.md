@@ -51,6 +51,15 @@ convinced me to do better :
 	As I am going to use this header script for school projects, I want it to create a header that I can forget about
 	and push without having to modify. This is what that script does.
 
+### On the length of a tab character
+
+Usually, a tab character is of length 8 (that is, tabstops are at a distance of 8 spaces). However if you do so, it becomes
+a pain in the ass to align variables to comply with 42 norm. In the script, the variable `TABLEN` which is defined in
+`header_int.h` allows you to control the length of a tab character, and to use it align the variables properly.
+You can basically set it to any value, but I recommend using 4 spaces wide tabs (and thus letting it set to 4).
+However, know that if you modify it (and modify the rendering accordingly in your text editor, for me it is vim) you wil
+get an aligned result with your desired tab length.
+
 ### How to write your C files ?
 
 Even if the Script fixes a lot of problems I encountered, they are still a few rules that can (and will) be improved later.
