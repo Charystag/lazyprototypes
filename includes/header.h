@@ -20,7 +20,8 @@ const unsigned int max_distance, unsigned int *prototype_len);
 //Functions from file : show_dir_contents.c
 void			show_dir(char *path);
 
-int				get_dir_entries(char *path, t_list **lst, char *ext);
+int				get_dir_entries(char *path, struct s_list **lst, \
+const char *ext);
 
 //Functions from file : write_prototypes.c
 int				write_prototypes(const char *source_file, \

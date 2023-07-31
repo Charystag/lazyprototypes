@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:49:58 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 17:32:14 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 22:17:52 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 #include <unistd.h>
 #include "libft.h"
 
-typedef const char	t_cchar;
-
 void	show_dir(char *path)
 {
 	DIR				*d;
 	struct dirent	*dir;
-	char			d_path[1000];
+	char			d_path[1024];
 
 	d = NULL;
 	if (! (d = opendir(path)))
@@ -47,9 +45,9 @@ void	show_dir(char *path)
 	closedir(d);
 }
 
-static int	wrong_extension(t_cchar *filename, t_cchar *ext)
+static int	wrong_extension(const char *filename, const char *ext)
 {
-	t_cchar	*dot;
+	const char	*dot;
 
 	dot = ft_strrchr(filename, '.');
 	if (! dot)
@@ -57,12 +55,12 @@ static int	wrong_extension(t_cchar *filename, t_cchar *ext)
 	return (ft_strcmp(dot, ext));
 }
 
-int	get_dir_entries(char *path, t_list **lst, char *ext)
+int	get_dir_entries(char *path, struct s_list **lst, const char *ext)
 {
 	DIR				*d;
 	struct dirent	*dir;
-	char			d_path[300];
-	t_list			*name;
+	char			d_path[1024];
+	struct s_list	*name;
 	int				error;
 
 	if (! (d = opendir(path)))
