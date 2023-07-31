@@ -82,7 +82,7 @@ For now, the only (and last) rules you have to follow are :
 		/*code here*/
 	}
 	```
-2. Always put a `\\` if you want to split your function prototype on multiple lines
+2. Always put a `\` if you want to split your function prototype on multiple lines
 	That is, do :
 	```c
 	struct s_return_type	my_func(struct s_type identifier, \
