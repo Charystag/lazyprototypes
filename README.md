@@ -22,9 +22,9 @@ This will compile the script and move the binary into a folder called .local/bin
 If you already have the norminette, it is very likely that this folder already exists and that the path to
 this folder is already in your path variable.
 If not, or if you see that running the command `header` doesn't print the help message, add the following line to
-your "run commands" file (probably located at `~/.zshrc` or `~/.bashrc`) : `export PATH="$PATH:$HOME/.local/bin"
+your "run commands" file (probably located at `~/.zshrc` or `~/.bashrc`) : `export PATH="$PATH:$HOME/.local/bin"`
 
-## What I am meant to do ?
+## What is it meant to do ?
 
 To see further informations on this topic, go and see `how-it-works.md`. The informations given here will only
 allow you to ensure that you don't get any surprise when using this script with your project.
@@ -51,4 +51,41 @@ convinced me to do better :
 	As I am going to use this header script for school projects, I want it to create a header that I can forget about
 	and push without having to modify. This is what that script does.
 
-### How 
+### How to write your C files ?
+
+Even if the Script fixes a lot of problems I encountered, they are still a few rules that can (and will) be improved later.
+
+For now, the only (and last) rules you have to follow are :
+
+1. Write the `{` after the function name below the function prototype.
+	That is, do :
+	```c
+	struct s_return_type	my_func(struct s_type identifier)
+	{
+		/*code here*/
+	}
+	```
+	Rather than :
+	```c
+	struct s_return_type	my_func(struct s_type identifier){
+		/*code here*/
+	}
+	```
+2. Always put a `\\` if you want to split your function prototype on multiple lines
+	That is, do :
+	```c
+	struct s_return_type	my_func(struct s_type identifier, \
+	struct s_another_type another_identifier)
+	{
+		/*code here*/
+	}
+	```
+	Rather than :
+	```c
+	struct s_return_type	my_func(struct s_type identifier, 
+	struct s_another_type another_identifier)
+	{
+		/*code here*/
+	}
+	```
+
