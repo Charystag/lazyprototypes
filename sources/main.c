@@ -6,13 +6,13 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 16:04:39 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:30:49 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static _Noreturn void usage(int status)
+static _Noreturn void	usage(int status)
 {
 	char	*program_name;
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	err = 0;
-	if(err || get_prototypes(&entries, TMP_FILE, &max_distance))
+	if (err || get_prototypes(&entries, TMP_FILE, &max_distance))
 		err = 1;
 	if (err || write_prototypes(TMP_FILE, argv[2], max_distance, argv + 3))
 		err = 1;

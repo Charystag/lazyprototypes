@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 15:35:49 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:31:39 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ const char *filename)
 {
 	if ((*buf = calloc(1, sizeof **buf)) == NULL)
 	{
-		dprintf(STDERR_FILENO, \
-		"Couldn't allocate struct s_str of size : 1\n");
+		dprintf(STDERR_FILENO, "Couldn't allocate struct s_str of size : 1\n");
 		return (1);
 	}
 	if ((*fstream = fopen(filename, "r")) == NULL)

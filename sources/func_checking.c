@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 14:26:57 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:30:17 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ unsigned int	is_func_prototype(t_cchar *line)
 
 	if (! (whitespace = right_format(line)))
 		return (0);
-	return(compute_distance(line, whitespace));
+	return (compute_distance(line, whitespace));
 }

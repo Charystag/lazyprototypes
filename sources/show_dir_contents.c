@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:49:58 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/12 19:02:33 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:32:14 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,10 @@ void	show_dir(char *path)
 	closedir(d);
 }
 
-/*
-static void	print_node(void *node)
-{
-	ft_printf("%s\n", (char *)node);
-}
-*/
-
 static int	wrong_extension(t_cchar *filename, t_cchar *ext)
 {
 	t_cchar	*dot;
 
-	//ft_printf("Name : %s\n", filename);
 	dot = ft_strrchr(filename, '.');
 	if (! dot)
 		return (1);
