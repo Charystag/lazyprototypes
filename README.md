@@ -26,8 +26,8 @@ your "run commands" file (probably located at `~/.zshrc` or `~/.bashrc`) : `expo
 
 ## What is it meant to do ?
 
-To see further informations on this topic, go and see `how-it-works.md`. The informations given here will only
-allow you to ensure that you don't get any surprise when using this script with your project.
+To see further informations on this topic, go and see `how-it-works.md` (not written yet). The informations 
+given here will only allow you to ensure that you don't get any surprise when using this script with your project.
 
 ### What is the expected result ?
 
@@ -89,3 +89,26 @@ For now, the only (and last) rules you have to follow are :
 	}
 	```
 
+Aside from those two rules (and some bugs that you users might discover and that I'll be more than happy to fix), you can
+write your C files as you wish. Go check the `test.c` file in the `tests` folder and the resulting `test.h` file.
+
+### What about the other files ?
+
+Right now, there is defined variable in the file called `header_int.h` (whose name is the legacy of a time when the header
+script wasn't as good as it is now). This variable called `EXT` controls the source file that are looked for by the script.
+If you want, you can modify it and use the script to parse other types of files, I didn't test it with other files extensions
+but as soon as you respect the two rules I stated earlier it should be working the same.
+Another update of the header script will come to fix it and allow the user to specify the files to look for when running
+the script.
+
+### What now ? You done talking ?
+
+Now, go on and use the script as you like. It is yours as soon as it arrives on your computer. Don't hesitate to report bugs
+for me to fix them as soon as I can (or if you want to go through the code by yourself feel more than free to fork, fix and
+make a pull request for the change).
+
+### Acknowledgements
+
+Thanks to rmechety for having provided his version of a Headermaker script written in cpp. This encouraged me to provide my
+own version that wanted to offer another way to automate header creation. Feel free to check out his version which is
+available at [Headermaker](https://github.com/rmechety/Headermaker)
