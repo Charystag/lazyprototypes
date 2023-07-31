@@ -57,6 +57,8 @@ Usually, a tab character is of length 8 (that is, tabstops are at a distance of 
 a pain in the ass to align variables to comply with 42 norm. In the script, the variable `TABLEN` which is defined in
 `header_int.h` allows you to control the length of a tab character, and to use it align the variables properly.
 You can basically set it to any value, but I recommend using 4 spaces wide tabs (and thus letting it set to 4).
+To modify it, just run make with the value of `TABLEN` you want to set. For example : `make TABLEN=8` or
+`make re TABLEN=8`
 However, know that if you modify it (and modify the rendering accordingly in your text editor, for me it is vim) you wil
 get an aligned result with your desired tab length.
 
@@ -107,6 +109,8 @@ Right now, there is defined variable in the file called `header_int.h` (whose na
 script wasn't as good as it is now). This variable called `EXT` controls the source file that are looked for by the script.
 If you want, you can modify it and use the script to parse other types of files, I didn't test it with other files extensions
 but as soon as you respect the two rules I stated earlier it should be working the same.
+To modify this variable, run `make` with the value of `EXT` you want to set. For example : `make EXT=.cpp` or
+`make re EXT=.cpp`
 Another update of the header script will come to fix it and allow the user to specify the files to look for when running
 the script.
 
