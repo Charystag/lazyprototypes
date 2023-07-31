@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/07/23 12:19:13 by nsainton         ###   ########.fr        #
+#    Updated: 2023/07/31 16:37:43 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,6 +123,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c Makefile
 
 $(LFT_DIR):
 	git clone $(LFT_URL) $(LFT_DIR)
+
 .PHONY: clean
 clean:
 	$(RM) -r $(DEPS_DIR)
@@ -158,5 +159,15 @@ git:
 	git add --all
 	git commit -m "Automatic commit on $$(date) to save current state of work"
 	git push
+
+.PHONY: install
+install:
+	$(MAKE)
+	mkdir -p $$HOME/.local/bin
+	mv $(NAME) $$HOME/.local/bin
+
+.PHONY: uninstall
+uninstall:
+	$(RM) "$$HOME/.local/bin/$(NAME)"
 
 -include $(DEPS)

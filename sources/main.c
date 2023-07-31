@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 15:29:49 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:04:39 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	t_list			*entries;
 	int				err;
 
-	if (argc <= 2)
+	if (argc < 3)
 		usage(1);
 	max_distance = 0;
 	entries = NULL;
