@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:41:48 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 17:54:52 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:08:57 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static unsigned int	next_sep(t_cchar *line, const unsigned int max)
 
 	cutting_point = find_next_sep(line, max, ',');
 	if (! cutting_point && tabslen(line + cutting_point) >= max)
-		cutting_point = find_next_sep(line, max, ' ');
-	if (! cutting_point && tabslen(line + cutting_point) >= max)
 		cutting_point = find_next_sep(line, max, '\t');
 	return (cutting_point);
 }
@@ -46,9 +44,10 @@ static void	slice_line(char *line, const unsigned int max)
 	unsigned int	slice_index;
 
 	start = 0;
-	while (strlen(line + start) > max)
+	while (tabslen(line + start) > max)
 	{
-		slice_index = next_sep(line + start, max) + 1;
+		slice_index = next_sep(line + start, max);
+		slice_index += (*(line + start + slice_index) == ',');
 		memmove(line + start + slice_index + 3, line + start + slice_index + 1, \
 		strlen(line + start + slice_index + 1) + 1);
 		*(line + start + slice_index + 1) = '\\';
