@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/07/31 19:01:09 by nsainton         ###   ########.fr        #
+#    Updated: 2023/07/31 19:06:18 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,8 @@ endef
 export header_header
 
 .PHONY: all
+
+.SILENT:
 
 .DEFAULT_GOAL := all
 
