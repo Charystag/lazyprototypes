@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:49:58 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 22:17:52 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 22:23:07 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 #include <unistd.h>
 #include "libft.h"
 
+/*
+	We know that NAME_MAX is defined to be 254, so having a buffer of 1024
+	for the path seems to ensure that this buffer won't overflow. However,
+	this choice is unsafe and has to be fixed in another update
+*/
 void	show_dir(char *path)
 {
 	DIR				*d;
