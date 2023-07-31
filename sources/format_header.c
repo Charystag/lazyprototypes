@@ -6,14 +6,13 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:02:38 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 12:21:36 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:51:28 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <string.h>
 
-/*
 static int	stop_creation(t_cchar *destination_path)
 {
 	int		new;
@@ -34,7 +33,6 @@ pursue : type \'y\', otherwise enter any other character\n"\
 		remove(destination_path);
 	return (0);
 }
-*/
 
 static int	protect(unsigned int index, int c)
 {
@@ -90,12 +88,9 @@ int	header_header(const char *header, char **includes)
 {
 	int	header_fd;
 
-	/*
 	if (stop_creation(header))
 		return (-1);
 	header_fd = open(header, O_CREAT | O_WRONLY | O_TRUNC, 00644);
-	*/
-	header_fd = 1;
 	if (header_fd < 0)
 		return (-1);
 	if (include_headers(header_fd, header, includes))

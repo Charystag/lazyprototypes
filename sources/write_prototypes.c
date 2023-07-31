@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:41:48 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 12:09:22 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:50:46 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	write_prototypes(const char *source_file, const char *destination_file, cons
 	if (ofd == -1)
 	{
 		fclose(istream);
-		return (-1);
+		return (1);
 	}
 	line = NULL;
 	linesize = 0;
@@ -122,7 +122,8 @@ int	write_prototypes(const char *source_file, const char *destination_file, cons
 		fclose(istream);
 		return (1);
 	}
-	write(ofd, END, strlen(END));
 	fclose(istream);
+	write(ofd, END, strlen(END));
+	close(ofd);
 	return (0);
 }
