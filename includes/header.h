@@ -28,13 +28,16 @@ int				get_dir_entries(char *path, t_list **lst, char *ext);
 //Functions from file : write_prototypes.c
 int				write_prototypes(const char *source_file, \
 const char *destination_file, \
-const unsigned int max_distance);
+const unsigned int max_distance, char **includes);
 
 //Functions from file : debug.c
 void			print(void *string);
 
 //Functions from file : get_codeline.c
 int				get_codeline(struct s_str **buff, FILE *fstream);
+
+//Functions from file : format_header.c
+int				header_header(const char *header, char **includes);
 
 //Functions from file : write_to_file.c
 int				write_to_file(t_cchar *src_path, t_cint fd);

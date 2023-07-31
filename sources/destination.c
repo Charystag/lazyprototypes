@@ -6,33 +6,12 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:01:27 by nsainton          #+#    #+#             */
-/*   Updated: 2023/04/25 17:56:01 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:12:46 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <sys/errno.h>
-
-static int	stop_creation(t_cchar *destination_path)
-{
-	int		new;
-	int		remov;
-
-	remov = 'y';
-	new = access(destination_path, F_OK);
-	if (! new)
-	{
-		printf("The file : %s already exists, if you wish to remove it and \
-pursue : type \'y\', otherwise enter any other character\n"\
-		, destination_path);
-		remov = tolower(getchar());
-	}
-	if (remov != 'y')
-		return (1);
-	if (! new)
-		remove(destination_path);
-	return (0);
-}
 
 static int	build_line(char *new_line, t_cchar *line, int max)
 {

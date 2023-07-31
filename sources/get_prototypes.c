@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 10:15:10 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:21:17 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,11 @@ int	main(int argc, char **argv)
 {
 	unsigned int	max_distance;
 	t_list			*entries;
+	int				err;
 
-	if (argc != 2)
+	if (argc <= 2)
 	{
-		ft_dprintf(STDERR_FILENO, "Usage: ./print_code filepath\n");
+		ft_dprintf(STDERR_FILENO, "Usage: ./print_code sources_folder dest_file includes\n");
 		return (EXIT_FAILURE);
 	}
 	max_distance = 0;
@@ -127,20 +128,15 @@ int	main(int argc, char **argv)
 		ft_dprintf(STDERR_FILENO, "Error while getting entries from directory : %s\n", argv[1]);
 		return (1);
 	}
-	//get_prototypes_file(argv[1], 1, &max_distance);
-	if (get_prototypes(&entries, TMP_FILE, &max_distance))
-	{
-		remove(TMP_FILE);
-		return (1);
-	}
-	if (write_prototypes(TMP_FILE, argv[2], max_distance))
-	{
-		return (1);
+	err = 0;
+	if(err || get_prototypes(&entries, TMP_FILE, &max_distance))
+		err = 1;
+	if (err || write_prototypes(TMP_FILE, argv[2], max_distance, argv + 3))
+		err = 1;
 	if (remove(TMP_FILE))
 	{
 		ft_dprintf(STDERR_FILENO, "Couldn't remove temporary file\n");
-		return (1);
+		err = 1;
 	}
-	//ft_printf("The max distance for directory %s is %u\n", argv[1], max_distance);
-	return (EXIT_SUCCESS);
+	return (err);
 }

@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:41:48 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 10:08:57 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:09:22 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ const unsigned int max_distance)
 	return (err);
 }
 
-int	write_prototypes(const char *source_file, const char *destination_file, const unsigned int max_distance)
+int	write_prototypes(const char *source_file, const char *destination_file, const unsigned int max_distance, char **includes)
 {
 	FILE	*istream;
 	int		ofd;
@@ -102,16 +102,12 @@ int	write_prototypes(const char *source_file, const char *destination_file, cons
 	istream = fopen(source_file, "r");
 	if (! istream)
 		return (1);
-	/*
-	ofd = open(destination_file, O_WRONLY | O_CREAT | O_TRUNC);
+	ofd = header_header(destination_file, includes);
 	if (ofd == -1)
 	{
 		fclose(istream);
 		return (-1);
 	}
-	*/
-	(void)destination_file;
-	ofd = 1;
 	line = NULL;
 	linesize = 0;
 	while ((nread = getline(&line, &linesize, istream)) > 0)
@@ -126,6 +122,7 @@ int	write_prototypes(const char *source_file, const char *destination_file, cons
 		fclose(istream);
 		return (1);
 	}
+	write(ofd, END, strlen(END));
 	fclose(istream);
 	return (0);
 }
