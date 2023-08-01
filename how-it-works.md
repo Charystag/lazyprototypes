@@ -170,7 +170,7 @@ We will now give a name to these 3 parts to make it easier to reference them lat
 	to align the functions properly. In this part, the only whitespaces norm allows are *tabs*. They account for
 	`TABLEN` in the total length of the prototype. I recall that this length is 4 by default.
 3. The last part will be called the **input part**. This is the part where lies the function name and the major part
-	of its signature. In this part also, the only whitespaces the norm allows are *spaces*
+	of its signature[^signature]. In this part also, the only whitespaces the norm allows are *spaces*
 
 Now that we have a better idea of what a function prototype is made of, we see that we will need to modify the return part
 and the input part so that they only contain spaces (and no more that one space at a time) and that we will need to put
@@ -233,5 +233,49 @@ guideline provided by the norm.
 
 # Formatting the header
 
+This part, which is the last part of this version of the header script carries the objective of writting all the important
+infos in the header script which are :
+
+1. The 42 header (which is not dynamic now but will be fixed in another version)
+2. The header protection (we're not allowed to use a pragma[^pragma] directive to do so in 42 headers)
+3. Include the optional headers given as arguments
+4. Write the `#endif` once we've written all the prototypes with the rules we discussed earlier.
+
+## Header inclusion
+
+To write all the directive wee need in our header file, we will use the `include_headers` function, whose prototype is
+written below :
+```c
+static int include_headers(int header_fd, const char *header, char **includes)
+```
+In this function, `header` holds the path to the header file we have to create. We use the name of this file to create
+the right header protection.
+
+> Note to 42 students : This actually provided me with a use case of libft's function `ft_strmapi`
+
+After that we iterate over the array of files to include in order to put in their place the include files specified
+by the user.
+
+## The 42 header
+
+At the data at which this version is written (August 1st 2023) the 42 header you will get is a 42 header with the
+wrong name, author and dates. However the file you will get is sill norm compliant. From now on you have 3 options
+
+At the data at which this version is written (August 1st 2023) the 42 header you will get is a 42 header with the
+wrong name, author and dates. However the file you will get is sill norm compliant. From now on you have 3 options
+
+1. Let the 42 header as it is (recommended if you don't want to modify your header at all)
+2. Delete the header in the final folder and use a 42 header plugin to replace it with your own header
+3. Wait for the next version of the script that will bring a fix to that an a lot more options.
+
+# Final Words
+
+Here it is, thanks for reading the explanations. Don't hesitate to send an email at <nsainton@student.42.fr> to report
+any bug (be sure to use "HEADER\_SCRIPT -- subject" as your email subject).
+Hope that this script will be of any use to you and that you learn something while reading it, see you soon for the
+next update.
+
 [^dirent]: <https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/dirent.h>
 [^types]: <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf>
+[^signature]: <https://en.wikipedia.org/wiki/Function_prototype>
+[^pragma]: <https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html#index-_0023pragma-once>
