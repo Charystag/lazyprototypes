@@ -66,23 +66,9 @@ get an aligned result with your desired tab length.
 
 Even if the Script fixes a lot of problems I encountered, they are still a few rules that can (and will) be improved later.
 
-For now, the only (and last) rules you have to follow are :
+For now, the only (and last) rule you have to follow are :
 
-1. Write the `{` after the function name below the function prototype.
-	That is, do :
-	```c
-	struct s_return_type	my_func(struct s_type identifier)
-	{
-		/*code here*/
-	}
-	```
-	Rather than :
-	```c
-	struct s_return_type	my_func(struct s_type identifier){
-		/*code here*/
-	}
-	```
-2. Always put a `\` if you want to split your function prototype on multiple lines
+1. Always put a `\` if you want to split your function prototype on multiple lines
 	That is, do :
 	```c
 	struct s_return_type	my_func(struct s_type identifier, \
@@ -96,6 +82,21 @@ For now, the only (and last) rules you have to follow are :
 	struct s_return_type	my_func(struct s_type identifier, 
 	struct s_another_type another_identifier)
 	{
+		/*code here*/
+	}
+	```
+
+2. Write your functions return types on the same line as your function name
+	That is do :
+	```c
+	struct s_return type	my_func(struct s_type identifier){
+		/*code here*/
+	}
+	```
+	Rather than :
+	```c
+	struct s_return type
+	my_func(struct s_type identifier){
 		/*code here*/
 	}
 	```
