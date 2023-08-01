@@ -29,10 +29,27 @@ directory entries we're looking for :
 
 > In addition to the member `d_name`, the struct dirent can contain a number `unsigned int d_type` that
 > holds the type of file pointed to by the entry. One could replace the use of this member by a call
-> to the function `stat` defined in `unistd.h`. More infos at `man 2 stat` or at [man 2 stat](https://www.man7.org/linux/man-pages/man2/stat.2.html)
+> to the function `stat` defined in `unistd.h`. More infos at `man 2 stat` or 
+> at [man 2 stat](https://www.man7.org/linux/man-pages/man2/stat.2.html)
 
 ## How to retrieve directory entries ?
 
+The function called `get_dir_entries` will allow us to retrieve all the needed entries from a given directory
+and all subdirectories. Here is its prototype :
+```c
+int get_dir_entries(const char *path, struct s_lit **lst, const char *ext)
+```
+This function will put all the entries in a linked list and return the status of the operation. Here is how
+it will proceed :
 
+1. First it opens the directory
+2. While there is something to read in the directory stream, do the following operations
+	1. Create the path to the file by concatenating with sprintf the input path and the name of the entry
+	2. If the type of the entry is not that of a directory, check its extension, if it is a wrong extension
+		go to the next entry. If it is right, add it to the list of files.
+	3. If it is a directory that is not `.` or `..` then recursively apply the function `get_dir_entries` to it
+		with the new path to that directory as an argument
+3. If everything went well, you now have a linked list containing all the paths to the file you want to parse
+	as a result
 
 [^dirent]: <https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/dirent.h>
