@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 17:31:39 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:20:34 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ const char *filename)
 	return (0);
 }
 
-int	get_prototypes_file(const char *filename, int tmp_fd, unsigned int *max_distance)
+int	get_prototypes_file(const char *filename, \
+int tmp_fd, unsigned int *max_distance)
 {
 	FILE			*fstream;
 	int				swit;
@@ -79,7 +80,8 @@ char	*get_filename(char *content)
 	return (filename + 1);
 }
 
-unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, unsigned int *max_distance)
+unsigned int	get_prototypes(struct s_list **filenames, \
+const char *tmp_file, unsigned int *max_distance)
 {
 	char			*filename;
 	int				tmp_fd;

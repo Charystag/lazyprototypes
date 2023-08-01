@@ -34,7 +34,7 @@ unsigned int *max_distance);
 
 char			*get_filename(char *content);
 
-unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, \
+unsigned int	get_prototypes(struct s_list **filenames, const char *tmp_file, \
 unsigned int *max_distance);
 
 //Functions from file : get_dir_entries.c
