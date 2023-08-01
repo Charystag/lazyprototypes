@@ -95,5 +95,52 @@ the following character is also a space or a tab.
 
 In C programming, it is possible to write such things as :
 ```c
+struct s_return_type
+my_function(struct s_argument_type identifier){
+	/*code here*/
+}
 ```
+
+This will be counted as 4 different lines by the script and thus it will not detect that this is actually a function
+declaration (actually I didn't test but I don't think it is going to end well if you do so).
+
+However, to split a line of code you have another option :
+```c
+struct s_return_type my_function(struct s_argtype id1, \
+struct s_argtype id2){
+	/*code here*/
+}
+```
+Even though there are 4 lines here, this will be seen by the script as 3 lines of code. The function `get_codeline`
+(whose prototype is written below) reads the file and detects if the line that is just read ends with the 
+sequence `"\\\n"`. If so, it reads the next line and concatenates it to the first one until the line doesn't 
+end with `"\\\n"` anymore.<br/>
+Here is the function prototype :
+```c
+int get_codeline(struct s_str **buff, FILE *fstream)
+```
+As it uses the function getline to retrieve the contents of the file, we need to give it a `FILE` pointer instead
+of a regular file descriptor.
+
+### Where is the line stored
+
+To make the collection of the code lines easier, a special construct will be used. This struct's objective is to
+transform the C strings referenced to by a `char *` into a complete type[^types] (page 36 of the referenced document).
+That is, a type that olds its own size.<br/>
+Here is the definition of the struct :
+```c
+struct s_str
+{
+	char	*str;
+	size_t	len;
+	size_t	size;
+}
+```
+## What to do with one line of code ?
+
+Once we retrieved our line of code we check if it is a function prototype. If so, we write it to our line of code to the
+temporary header file, which is created in `/tmp` folder and holds the prototypes of our sources file, each prototype on
+a separate line.
+
 [^dirent]: <https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/dirent.h>
+[^types]: <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf>
