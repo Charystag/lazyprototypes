@@ -88,7 +88,11 @@ from this prototype to the beginning of the line (to compute the proper number o
 to align all the functions). This distance is computed until the first `' '` or `'\t'` between the end of types
 declaration and the function name. It is computed as such : <br/>
 Each character increases the distance of 1 except if : the character we're looking at is a space or a tab and
-the following character is also a space or a tab.
+the following character is also a space or a tab. A tab accounts for `TABLEN` (which is 4 by default) in the
+distance.
+
+> More on the notion of distance [here](#Compute-the-actual-length-of-a-function-prototype) where I explain
+> how I compute the length of a prototype
 
 ## What actually is a line of code ?
 
@@ -170,6 +174,39 @@ We will now give a name to these 3 parts to make it easier to reference them lat
 Now that we have a better idea of what a function prototype is made of, we see that we will need to modify the return part
 and the input part so that they only contain spaces (and no more that one space at a time) and that we will need to put
 the right number of tabs in the gap so that the function is properly aligned.
+
+## Compute the actual length of a function prototype
+
+Now that we have our rules to properly format a function prototype, we can compute its length. Lets first recall
+the new definition of the [length](#On-the-notion-of-distance) we gave earlier.
+Each char accounts for 1 in the length, except the tab characters that account for `TABLEN`. We will call this new length
+the ***tablen*** of our prototype.
+
+### The actual number of tabs.
+
+To know the number of tab characters that we will have to fill our gap with we remark that, for the function with
+the largest return part, we still need one tab character.
+So for this function, the number of tabs is : `max_distance / TABLEN - distance / TABLEN + 1`. As `distance == max_distance`
+we have that there is indeed 1 tab character in the gap for that function <br/>
+This allows us to remark that the distance we need to fill in other function is 
+also : `max_distance / TABLEN - distance / TABLEN + 1`.
+
+> :warning: Beware to not simplify this expression due to integer division
+
+---
+
+Once we have the number of tabs and the length of the return part and the input part. We can create a new string to write
+those in and compute the tablen of the prototype. This tablen is the number we will use to know if we need to cut our
+prototype for it to comply with the 42 norm.
+
+## Slicing the prototype
+
+In `header_int.h` is defined a preprocessor constant named `MAX_LINE_LEN`. This constant is by default at 79 (for a reason
+we'll explain later on) and controls the maximum length that a line of code can have in the header file.
+In the function `write_prototype` whose task is to write the prototypes in the header file and whose code is below :
+```c
+static int write_prototype(char *line, int ofd, size_t length, const unsigned int max_distance)
+```
 
 [^dirent]: <https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/dirent.h>
 [^types]: <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf>
