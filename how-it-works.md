@@ -4,7 +4,11 @@ The objective of this document is to explain how the header script works so
 you can take inspiration from it and modify it to make it more suitable to
 your needs.
 
-# Gather all the required files from a directory {#get-dir-entries}
+# Table Of Contents
+
+1. [Gather Files](#Gather-all-the-required-files-from-a-directory)
+
+# Gather all the required files from a directory
 
 ## The dirent library
 
