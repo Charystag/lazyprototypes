@@ -187,8 +187,8 @@ the ***tablen*** of our prototype.
 
 To know the number of tab characters that we will have to fill our gap with we remark that, for the function with
 the largest return part, we still need one tab character.
-So for this function, the number of tabs is : `max_distance / TABLEN - distance / TABLEN + 1`. As `distance == max_distance`
-we have that there is indeed 1 tab character in the gap for that function <br/>
+So for this function, the number of tabs is : `max_distance / TABLEN - distance / TABLEN + 1`. <br/>
+As `distance == max_distance` we have that there is indeed 1 tab character in the gap for that function <br/>
 This allows us to remark that the distance we need to fill in other function is 
 also : `max_distance / TABLEN - distance / TABLEN + 1`.
 
@@ -208,7 +208,7 @@ In the function `write_prototype` whose task is to write the prototypes in the h
 ```c
 static int write_prototype(const char *line, int ofd, size_t length, const unsigned int max_distance)
 ```
-We compute the tablen of a prototype and we use it to define the variable `lines_count = tabslen(prototype) / MAX_LINE_LEN + 1`
+We compute the tablen of a prototype and we use it to define the variable `lines_count = tabslen(prototype) / MAX_LINE_LEN + 1`.
 If this variable is defined, we `realloc` the prototype to give it room for the `"\\\n"` strings we'll need to add in order
 to make it norm compliant.
 
@@ -258,10 +258,7 @@ by the user.
 
 ## The 42 header
 
-At the data at which this version is written (August 1st 2023) the 42 header you will get is a 42 header with the
-wrong name, author and dates. However the file you will get is sill norm compliant. From now on you have 3 options
-
-At the data at which this version is written (August 1st 2023) the 42 header you will get is a 42 header with the
+At the data at which this version is written (August 1^s^t^ 2023) the 42 header you will get is a 42 header with the
 wrong name, author and dates. However the file you will get is sill norm compliant. From now on you have 3 options
 
 1. Let the 42 header as it is (recommended if you don't want to modify your header at all)
