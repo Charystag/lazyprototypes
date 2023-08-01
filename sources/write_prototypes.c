@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:41:48 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 12:50:46 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:27:42 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	slice_line(char *line, const unsigned int max)
 	}
 }
 
-static int	write_prototype(char *line, int ofd, size_t length, \
+static int	write_prototype(const char *line, int ofd, size_t length, \
 const unsigned int max_distance)
 {
 	char			*prototype;
@@ -74,24 +74,27 @@ const unsigned int max_distance)
 		dprintf(STDERR_FILENO, "Couldn't built prototype\n");
 		return (1);
 	}
+	err = 0;
 	lines_count = tabslen(prototype) / MAX_LINE_LEN + 1;
 	if (lines_count > 1 && \
 	! (tmp = realloc(prototype, proto_len + 4 * (lines_count - 1) + 1)))
 	{
 		dprintf(STDERR_FILENO, "Reallocation error\n");
-		return (1);
+		err = 1;
 	}
-	if (lines_count > 1)
+	if (lines_count > 1 && ! err)
 	{
 		prototype = tmp;
 		slice_line(prototype, MAX_LINE_LEN);
 	}
-	err = (write(ofd, prototype, strlen(prototype)) < 1);
+	err = (err || (write(ofd, prototype, strlen(prototype)) < 1));
 	free(prototype);
 	return (err);
 }
 
-int	write_prototypes(const char *source_file, const char *destination_file, const unsigned int max_distance, char **includes)
+int	write_prototypes(const char *source_file, \
+const char *destination_file, const unsigned int max_distance, \
+char **includes)
 {
 	FILE	*istream;
 	int		ofd;
