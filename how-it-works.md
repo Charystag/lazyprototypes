@@ -8,6 +8,7 @@ your needs.
 
 1. [Gather Files](#Gather-all-the-required-files-from-a-directory)
 2. [Extract Prototypes](#Extract-the-prototypes-in-a-temporary-file)
+3. [Write header](#Writting-the-norm-compliant-header)
 
 # Gather all the required files from a directory
 
@@ -141,6 +142,34 @@ struct s_str
 Once we retrieved our line of code we check if it is a function prototype. If so, we write it to our line of code to the
 temporary header file, which is created in `/tmp` folder and holds the prototypes of our sources file, each prototype on
 a separate line.
+
+After that, once we have gathered all the prototypes from the source files, we can start cutting it to fit our needs,
+that is, use the maximum we computed while checking for function prototypes to help us align our functions with the one
+that is has the longest type declarations of all
+
+# Writting the norm compliant header
+
+## Give the proper format to our function prototypes
+
+A function prototypes can be seen as splitted into 3 distincts parts. Let's take a random function prototype, with `|`
+to visually separate the 3 parts :
+```c
+struct s_return_type|   |func_name(struct s_argument_type identifier);
+```
+We will now give a name to these 3 parts to make it easier to reference them later:
+
+1. The first part will be called the **return part**. This is the part where lies the return type of the function
+	and the function qualifiers. In this part, the only whitespaces the norm allows are *spaces*. They account for
+	one in the total length of the prototype.
+2. The second part will be called the **gap**. This is the part where we have to put right number of tab characters 
+	to align the functions properly. In this part, the only whitespaces norm allows are *tabs*. They account for
+	`TABLEN` in the total length of the prototype. I recall that this length is 4 by default.
+3. The last part will be called the **input part**. This is the part where lies the function name and the major part
+	of its signature. In this part also, the only whitespaces the norm allows are *spaces*
+
+Now that we have a better idea of what a function prototype is made of, we see that we will need to modify the return part
+and the input part so that they only contain spaces (and no more that one space at a time) and that we will need to put
+the right number of tabs in the gap so that the function is properly aligned.
 
 [^dirent]: <https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/dirent.h>
 [^types]: <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf>
