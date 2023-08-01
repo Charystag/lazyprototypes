@@ -20,5 +20,8 @@ directory entries we're looking for :
 	- `int closedir(DIR *dirp)` : Closes the directory stream referred to by dirp.
 	- `struct dirent *readdir(DIR *dirp)` : Returns a pointer to a structure representing the entry
 		at the current position in the stream and positions the stream at the next entry
+- **Member types**
+	- `DIR` : A structure representing a directory stream. Usually opaque to users
+	- `struct dirent` : 
 
 [^dirent]: <https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/dirent.h>
