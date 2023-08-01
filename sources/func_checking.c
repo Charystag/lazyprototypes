@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 17:30:17 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:46:50 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ static unsigned int	right_format(t_cchar *line)
 	char			*main;
 	char			*st;
 	char			*par;
+	char			*closing;
 	unsigned int	whitespace_index;
 
 	if (! isalpha(*line) && *line != '_')
 		return (0);
-	if (! (par = strchr(line, '(')))
+	if (! ((par = strchr(line, '(')) && (closing = strchr(line, ')'))))
 		return (0);
 	if ((st = strstr(line, "static")) && st < par)
 		return (0);

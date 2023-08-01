@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/01 11:20:34 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:51:19 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ static int	write_prototype(struct s_str *buf, int *swit, int tmp_fd, \
 unsigned int *max_distance)
 {
 	unsigned int	distance;
+	size_t			par_index;
 
 	distance = is_func_prototype(buf->str);
 	if (comment_switch(buf->str, swit, buf->len) || ! distance)
 		return (EXIT_SUCCESS);
-	*(buf->str + buf->len - 1) = ';';
+	par_index = (strrchr(buf->str, ')') - buf->str);
+	buf->len = par_index + 1;
+	tstr_addchar(buf, ';');
 	tstr_addchar(buf, '\n');
 	tstr_addchar(buf, '\n');
 	if ((write(tmp_fd, buf->str, buf->len) < 0))
