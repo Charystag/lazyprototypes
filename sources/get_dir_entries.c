@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 07:50:11 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/01 08:10:20 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/01 08:19:47 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	get_dir_entries(const char *path, struct s_list **lst, const char *ext)
 			if (wrong_extension(dir->d_name, ext))
 				continue ;
 			if (! (name = ft_lstnew_cpy(d_path, strlen(d_path) + 1)))
-				return (1);
+			{
+				error = 1;
+				break ;
+			}
 			ft_lstadd_front(lst, name);
 		}
 		else if (! (strcmp(dir->d_name, ".") && strcmp(dir->d_name, "..")))
@@ -59,9 +62,9 @@ int	get_dir_entries(const char *path, struct s_list **lst, const char *ext)
 		else
 		{
 			if ((error = get_dir_entries(d_path, lst, ext)))
-				return (error);
+				break ;
 		}
 	}
 	closedir(d);
-	return (0);
+	return (error);
 }
