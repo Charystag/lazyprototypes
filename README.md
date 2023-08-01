@@ -26,7 +26,7 @@ your "run commands" file (probably located at `~/.zshrc` or `~/.bashrc`) : `expo
 
 ## What is it meant to do ?
 
-To see further informations on this topic, go and see `how-it-works.md` (not written yet). The informations 
+To see further informations on this topic, go and see [how-it-works](docs/how-it-works.md). The informations 
 given here will only allow you to ensure that you don't get any surprise when using this script with your project.
 
 ### What is the expected result ?
