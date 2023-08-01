@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 07:50:11 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/01 07:50:13 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/01 08:10:20 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	wrong_extension(const char *filename, const char *ext)
 	return (ft_strcmp(dot, ext));
 }
 
-int	get_dir_entries(char *path, struct s_list **lst, const char *ext)
+int	get_dir_entries(const char *path, struct s_list **lst, const char *ext)
 {
 	DIR				*d;
 	struct dirent	*dir;

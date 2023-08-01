@@ -38,7 +38,7 @@ unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, \
 unsigned int *max_distance);
 
 //Functions from file : get_dir_entries.c
-int				get_dir_entries(char *path, struct s_list **lst, \
+int				get_dir_entries(const char *path, struct s_list **lst, \
 const char *ext);
 
 //Functions from file : main.c
