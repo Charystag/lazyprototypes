@@ -258,7 +258,7 @@ by the user.
 
 ## The 42 header
 
-At the data at which this version is written (August 1^s^t^ 2023) the 42 header you will get is a 42 header with the
+At the data at which this version is written (August 1^st^ 2023) the 42 header you will get is a 42 header with the
 wrong name, author and dates. However the file you will get is sill norm compliant. From now on you have 3 options
 
 1. Let the 42 header as it is (recommended if you don't want to modify your header at all)
