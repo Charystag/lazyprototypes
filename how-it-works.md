@@ -9,6 +9,7 @@ your needs.
 1. [Gather Files](#Gather-all-the-required-files-from-a-directory)
 2. [Extract Prototypes](#Extract-the-prototypes-in-a-temporary-file)
 3. [Write header](#Writting-the-norm-compliant-header)
+4. [Format header](#Formatting-the-header)
 
 # Gather all the required files from a directory
 
@@ -202,11 +203,35 @@ prototype for it to comply with the 42 norm.
 ## Slicing the prototype
 
 In `header_int.h` is defined a preprocessor constant named `MAX_LINE_LEN`. This constant is by default at 79 (for a reason
-we'll explain later on) and controls the maximum length that a line of code can have in the header file.
+we'll understand later on) and controls the maximum length that a line of code can have in the header file.
 In the function `write_prototype` whose task is to write the prototypes in the header file and whose code is below :
 ```c
-static int write_prototype(char *line, int ofd, size_t length, const unsigned int max_distance)
+static int write_prototype(const char *line, int ofd, size_t length, const unsigned int max_distance)
 ```
+We compute the tablen of a prototype and we use it to define the variable `lines_count = tabslen(prototype) / MAX_LINE_LEN + 1`
+If this variable is defined, we `realloc` the prototype to give it room for the `"\\\n"` strings we'll need to add in order
+to make it norm compliant.
+
+### The next separator
+
+To make our prototype norm compliant, we need to cut it. To ensure that it is indeed following the norm guidelines, we will
+try to cut it at the latest `','` where the tablen is smaller than the `MAX_LINE_LEN`. If no `','` is encountered we find
+the last `'\t'` before `MAX_LINE_LEN`. When we get the index of the cut, we move all the bytes 2 positions forward in order to
+make room for the two characters we need to add and we do so while the remanining tablen of the prototype is greater than
+`MAX_LINE_LEN`
+
+> Note that if no `','` and no `'\t'` is encountered before `MAX_LINE_LEN`, the script will make the header but it won't be
+> norm compliant. One could argue that if we use the spaces to split the prototype it would lay the right result. I may
+> fix it later (as using spaces throws unexpected results at the moment) but for now I will argue that if you need more
+> than 80 characters for your function return type. ***YOU*** are the problem.
+
+### Chotto matte ! Why is the max line length equal to 79 ?
+
+When looking for the next separator, if a `','` is encountered, we move one position forward (to keep the `' '` on the same
+line) before moving the characters. If the `','` is at position 79, our `' '` will then be at position 80 which is the
+guideline provided by the norm.
+
+# Formatting the header
 
 [^dirent]: <https://en.wikibooks.org/wiki/C_Programming/POSIX_Reference/dirent.h>
 [^types]: <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf>
