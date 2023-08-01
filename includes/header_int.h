@@ -6,12 +6,12 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 18:05:27 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:21:12 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TYPES_H
-# define FT_TYPES_H
+#ifndef HEADER_INT_H
+# define HEADER_INT_H
 # define HEADER \
 "/* ************************************************************************** */\n"\
 "/*                                                                            */\n"\

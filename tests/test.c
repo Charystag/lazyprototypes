@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:01:59 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 15:42:05 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:53:58 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,5 +150,11 @@ struct s_type b, \
 struct s_another_var c, \
 )
 {
+	/*code here*/
+}
+
+struct s_wandering_prototype			func_test17(int a, 			unsigned int 		b);
+
+struct s_freely_formatted_func				func_test18(int a,   const char				*b){
 	/*code here*/
 }

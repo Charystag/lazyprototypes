@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 17:31:39 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:51:19 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ static int	write_prototype(struct s_str *buf, int *swit, int tmp_fd, \
 unsigned int *max_distance)
 {
 	unsigned int	distance;
+	size_t			par_index;
 
 	distance = is_func_prototype(buf->str);
 	if (comment_switch(buf->str, swit, buf->len) || ! distance)
 		return (EXIT_SUCCESS);
-	*(buf->str + buf->len - 1) = ';';
+	par_index = (strrchr(buf->str, ')') - buf->str);
+	buf->len = par_index + 1;
+	tstr_addchar(buf, ';');
 	tstr_addchar(buf, '\n');
 	tstr_addchar(buf, '\n');
 	if ((write(tmp_fd, buf->str, buf->len) < 0))
@@ -47,7 +50,8 @@ const char *filename)
 	return (0);
 }
 
-int	get_prototypes_file(const char *filename, int tmp_fd, unsigned int *max_distance)
+int	get_prototypes_file(const char *filename, \
+int tmp_fd, unsigned int *max_distance)
 {
 	FILE			*fstream;
 	int				swit;
@@ -79,7 +83,8 @@ char	*get_filename(char *content)
 	return (filename + 1);
 }
 
-unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, unsigned int *max_distance)
+unsigned int	get_prototypes(struct s_list **filenames, \
+const char *tmp_file, unsigned int *max_distance)
 {
 	char			*filename;
 	int				tmp_fd;

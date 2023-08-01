@@ -52,4 +52,10 @@ int b);
 struct s_splitted_func_prototype				func_test16(unsigned int *a, \
 struct s_type b, struct s_another_var c, );
 
+struct s_wandering_prototype					func_test17(int a, \
+unsigned int b);
+
+struct s_freely_formatted_func					func_test18(int a, \
+const char *b);
+
 #endif

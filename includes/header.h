@@ -17,12 +17,6 @@
 char			*format_prototype(const char *prototype, \
 const unsigned int max_distance, unsigned int *prototype_len);
 
-//Functions from file : show_dir_contents.c
-void			show_dir(char *path);
-
-int				get_dir_entries(char *path, struct s_list **lst, \
-const char *ext);
-
 //Functions from file : write_prototypes.c
 int				write_prototypes(const char *source_file, \
 const char *destination_file, const unsigned int max_distance, \
@@ -40,8 +34,12 @@ unsigned int *max_distance);
 
 char			*get_filename(char *content);
 
-unsigned int	get_prototypes(t_list **filenames, const char *tmp_file, \
+unsigned int	get_prototypes(struct s_list **filenames, const char *tmp_file, \
 unsigned int *max_distance);
+
+//Functions from file : get_dir_entries.c
+int				get_dir_entries(const char *path, struct s_list **lst, \
+const char *ext);
 
 //Functions from file : main.c
 //Functions from file : func_checking.c
