@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 07:50:11 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/01 08:19:47 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:35:20 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	get_dir_entries(const char *path, struct s_list **lst, const char *ext)
 
 	if (! (d = opendir(path)))
 		return (1);
+	error = 0;
 	while ((dir = readdir(d)))
 	{
 		sprintf(d_path, "%s/%s", path, dir->d_name);
