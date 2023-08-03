@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/08/01 11:51:27 by nsainton         ###   ########.fr        #
+#    Updated: 2023/08/03 12:01:55 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LIBS_DIR ?= $(addprefix $(shell pwd)/, $(LIBS))
 
 LFT_DIR:= $(LIBS_DIR)/libft
 
-LFT_URL:= "git@github.com:nsainton/libft.git"
+LFT_URL:= "nsainton/libft.git"
 
 ARCHITECTURE= $(shell uname)
 
@@ -127,7 +127,8 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c Makefile
 	-DTABLEN=$(TABLEN) -DEXT='"$(EXT)"' -o $@
 
 $(LFT_DIR):
-	git clone $(LFT_URL) $(LFT_DIR)
+	git clone git@github.com:$(LFT_URL) $(LFT_DIR) || \
+	git clone https://github.com/$(LFT_URL) $(LFT_DIR)
 
 .PHONY: clean
 clean:
