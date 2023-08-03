@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:41:48 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/01 18:27:42 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:02:25 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ const int separator)
 	return (next_sep);
 }
 
+/*
+	If line is as such : `const char * const bash_license = N_("License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n");`
+	like encountered in bash source files, it will be splitted from
+	the beginning of the line at each time (as index will be 0 if
+	we do not look for space). This is why if we can't find no ','
+	or '\t' to split on and our line is still too long, we need to
+	split over space to ensure that our line won't be too splitted
+	and thus overflowing our buffer.
+*/
 static unsigned int	next_sep(t_cchar *line, const unsigned int max)
 {
 	unsigned int	cutting_point;
@@ -35,6 +44,8 @@ static unsigned int	next_sep(t_cchar *line, const unsigned int max)
 	cutting_point = find_next_sep(line, max, ',');
 	if (! cutting_point && tabslen(line + cutting_point) >= max)
 		cutting_point = find_next_sep(line, max, '\t');
+	if (! cutting_point && tabslen(line + cutting_point) >= max)
+		cutting_point = find_next_sep(line, max, ' ');
 	return (cutting_point);
 }
 
@@ -56,6 +67,13 @@ static void	slice_line(char *line, const unsigned int max)
 	}
 }
 
+/*
+	We are supposed to allocate room for "\\\n" but we allocate slots
+	for 2 extra lines in case we miscalculated a bit the needed number
+	of lines.
+	Such miscalculation could occur due to the way we compute the length
+	vs the way we actually split the lines.
+*/
 static int	write_prototype(const char *line, int ofd, size_t length, \
 const unsigned int max_distance)
 {
