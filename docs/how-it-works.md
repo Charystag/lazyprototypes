@@ -216,14 +216,15 @@ to make it norm compliant.
 
 To make our prototype norm compliant, we need to cut it. To ensure that it is indeed following the norm guidelines, we will
 try to cut it at the latest `','` where the tablen is smaller than the `MAX_LINE_LEN`. If no `','` is encountered we find
-the last `'\t'` before `MAX_LINE_LEN`. When we get the index of the cut, we move all the bytes 2 positions forward in order to
-make room for the two characters we need to add and we do so while the remanining tablen of the prototype is greater than
-`MAX_LINE_LEN`
+the last `'\t'` before `MAX_LINE_LEN`. If the first `'\t'` is still after the `MAX_LINE_LEN` the script will look for the
+last `' '`.
 
-> Note that if no `','` and no `'\t'` is encountered before `MAX_LINE_LEN`, the script will make the header but it won't be
-> norm compliant. One could argue that if we use the spaces to split the prototype it would lay the right result. I may
-> fix it later (as using spaces throws unexpected results at the moment) but for now I will argue that if you need more
-> than 80 characters for your function return type. ***YOU*** are the problem.
+> However, if the script needs to look for the last space to cut the line it retrieved, it is very unlikely that this
+> line is a func prototype and you should either report a bug or make the code you wrote comply with the few rules I
+> provided.
+
+When we get the index of the cut, we move all the bytes 2 positions forward in order to make room for the two 
+characters we need to add and we do so while the remanining tablen of the prototype is greater than `MAX_LINE_LEN`
 
 ### Chotto matte ! Why is the max line length equal to 79 ?
 
