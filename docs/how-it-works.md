@@ -132,7 +132,7 @@ of a regular file descriptor.
 
 To make the collection of the code lines easier, a special construct will be used. This struct's objective is to
 transform the C strings referenced to by a `char *` into a complete type[^types] (page 36 of the referenced document).
-That is, a type that olds its own size.<br/>
+That is, a type that holds its own size.<br/>
 Here is the definition of the struct :
 ```c
 struct s_str
@@ -259,7 +259,7 @@ by the user.
 ## The 42 header
 
 At the data at which this version is written (August 1<sup>st</sup> 2023) the 42 header you will get is a 42 header with the
-wrong name, author and dates. However the file you will get is sill norm compliant. From now on you have 3 options
+wrong name, author and dates. However the file you will get is still norm compliant. From now on you have 3 options
 
 1. Let the 42 header as it is (recommended if you don't want to modify your header at all)
 2. Delete the header in the final folder and use a 42 header plugin to replace it with your own header
