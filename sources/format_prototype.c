@@ -6,11 +6,15 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 10:50:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 10:13:32 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:32:29 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include <string.h>
+#include <limits.h>
+#include <ctype.h>
+#include <stdlib.h>
 
 static unsigned int	proto_length(const char *prototype, \
 const unsigned int max_distance, unsigned int *end_of_types, \
