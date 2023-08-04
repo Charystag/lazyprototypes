@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 10:09:49 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:32:40 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ unsigned int *max_distance)
 		return (EXIT_SUCCESS);
 	par_index = (strrchr(buf->str, ')') - buf->str);
 	buf->len = par_index + 1;
-	tstr_addchar(buf, ';');
-	tstr_addchar(buf, '\n');
-	tstr_addchar(buf, '\n');
+	tstrncat(buf, ";\n\n", 3);
 	if ((write(tmp_fd, buf->str, buf->len) < 0))
 		return (EXIT_FAILURE);
 	if (distance > *max_distance)
@@ -77,7 +75,7 @@ char	*get_filename(char *content)
 {
 	char	*filename;
 
-	filename = ft_strrchr((char *)content, '/');
+	filename = strrchr((char *)content, '/');
 	if (! filename)
 		return (content);
 	return (filename + 1);
