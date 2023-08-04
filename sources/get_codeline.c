@@ -6,11 +6,12 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 10:03:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/28 18:58:15 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:33:26 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include <stdlib.h>
 
 /*
 	We check for nread + len + 3 to keep two slots available for the
