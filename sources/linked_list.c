@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 10:15:50 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 16:44:14 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:57:14 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,6 @@ void	ft_lstadd_front(struct s_list **lst, struct s_list *new)
 	new->next = *lst;
 	*lst = new;
 }
-
-/*
-void	ft_lstadd_back(struct s_list **lst, struct s_list *new)
-{
-	struct s_list	*ptr;
-
-	ptr = ft_lstlast(*lst);
-	if (ptr == NULL)
-		*lst = new;
-	else
-	{
-		ptr->next = new;
-		new->next = NULL;
-	}
-}
-*/
 
 static void	ft_lstfreenodes(struct s_list **lst)
 {
