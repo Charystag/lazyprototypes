@@ -6,13 +6,13 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 10:21:31 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:57:49 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static unsigned int	right_format(t_cchar *line)
+static unsigned int	right_format(const char *line)
 {
 	char			*main;
 	char			*st;
@@ -39,7 +39,7 @@ static unsigned int	right_format(t_cchar *line)
 	return (whitespace_index);
 }
 
-int	open_parenthesis(t_cchar *function)
+int	open_parenthesis(const char *function)
 {
 	int	parenthesis;
 
@@ -52,7 +52,8 @@ int	open_parenthesis(t_cchar *function)
 	return (parenthesis);
 }
 
-unsigned int	compute_distance(t_cchar *line, const unsigned int end_of_types)
+unsigned int	compute_distance(const char *line, \
+const unsigned int end_of_types)
 {	
 	unsigned int	i;
 	unsigned int	distance;
@@ -77,7 +78,7 @@ unsigned int	compute_distance(t_cchar *line, const unsigned int end_of_types)
 	return (distance);
 }
 
-unsigned int	is_func_prototype(t_cchar *line)
+unsigned int	is_func_prototype(const char *line)
 {
 	unsigned int	whitespace;
 

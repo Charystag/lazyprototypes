@@ -6,13 +6,13 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:41:48 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/03 13:02:25 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:57:04 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static unsigned int	find_next_sep(t_cchar *line, const unsigned int max, \
+static unsigned int	find_next_sep(const char *line, const unsigned int max, \
 const int separator)
 {
 	char			*sep;
@@ -37,7 +37,7 @@ const int separator)
 	split over space to ensure that our line won't be too splitted
 	and thus overflowing our buffer.
 */
-static unsigned int	next_sep(t_cchar *line, const unsigned int max)
+static unsigned int	next_sep(const char *line, const unsigned int max)
 {
 	unsigned int	cutting_point;
 

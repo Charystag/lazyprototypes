@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:02:08 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 15:50:19 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:56:29 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	space_or_tab(int c)
 	return (c == ' ' || c == '\t');
 }
 
-size_t	tabslen(t_cchar *line)
+size_t	tabslen(const char *line)
 {
 	size_t	tabs;
 	size_t	len;
@@ -32,7 +32,7 @@ size_t	tabslen(t_cchar *line)
 	return (len + (TABLEN - 1) * tabs);
 }
 
-size_t	tabsnlen(t_cchar *line, const size_t n)
+size_t	tabsnlen(const char *line, const size_t n)
 {
 	size_t	tabs;
 	size_t	len;
@@ -49,8 +49,8 @@ size_t	tabsnlen(t_cchar *line, const size_t n)
 
 int	comment_switch(const char *line, int *swit, size_t len)
 {
-	t_cchar	*beg;
-	t_cchar	*end;
+	const char	*beg;
+	const char	*end;
 
 	beg = ft_strnstr(line, CBEG, len);
 	end = ft_strnstr(line, CEND, len);

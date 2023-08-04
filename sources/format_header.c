@@ -6,14 +6,14 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:02:38 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 15:36:31 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:57:21 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <string.h>
 
-static int	stop_creation(t_cchar *destination_path)
+static int	stop_creation(const char *destination_path)
 {
 	int		new;
 	int		remov;
