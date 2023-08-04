@@ -6,11 +6,14 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:41:48 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 15:57:04 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:42:25 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 static unsigned int	find_next_sep(const char *line, const unsigned int max, \
 const int separator)

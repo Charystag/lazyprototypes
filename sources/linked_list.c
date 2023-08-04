@@ -6,41 +6,44 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 10:15:50 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 10:18:56 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:44:14 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include <stdlib.h>
+#include <string.h>
 
-t_list	*ft_lstnew_cpy(t_cvoid *content, size_t size)
+struct s_list	*ft_lstnew_cpy(const void *content, size_t size)
 {
-	t_list	*new_elem;
+	struct s_list	*new_elem;
 	void	*new_content;
 
 	new_content = malloc(size);
 	if (! new_content)
 		return (new_content);
-	ft_memcpy(new_content, content, size);
+	memcpy(new_content, content, size);
 	new_elem = malloc(sizeof * new_elem);
 	if (! new_elem)
 	{
 		free(new_content);
 		return (new_elem);
 	}
-	ft_bzero(new_elem, sizeof * new_elem);
+	bzero(new_elem, sizeof * new_elem);
 	new_elem->content = new_content;
 	return (new_elem);
 }
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_front(struct s_list **lst, struct s_list *new)
 {
 	new->next = *lst;
 	*lst = new;
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+/*
+void	ft_lstadd_back(struct s_list **lst, struct s_list *new)
 {
-	t_list	*ptr;
+	struct s_list	*ptr;
 
 	ptr = ft_lstlast(*lst);
 	if (ptr == NULL)
@@ -51,11 +54,12 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		new->next = NULL;
 	}
 }
+*/
 
-static void	ft_lstfreenodes(t_list **lst)
+static void	ft_lstfreenodes(struct s_list **lst)
 {
-	t_list	*p;
-	t_list	*q;
+	struct s_list	*p;
+	struct s_list	*q;
 
 	p = *lst;
 	while (p->next)
@@ -68,10 +72,10 @@ static void	ft_lstfreenodes(t_list **lst)
 	*lst = NULL;
 }
 
-void	ft_lstclear(t_list **lst, void (*del) (void *))
+void	ft_lstclear(struct s_list **lst, void (*del) (void *))
 {
-	t_list	*p;
-	t_list	*q;
+	struct s_list	*p;
+	struct s_list	*q;
 
 	p = *lst;
 	if (p == NULL)
@@ -88,4 +92,23 @@ void	ft_lstclear(t_list **lst, void (*del) (void *))
 	del(p->content);
 	free(p);
 	*lst = NULL;
+}
+
+static void	ft_lstdelone(struct s_list *lst, void (*del) (void *))
+{
+	del(lst->content);
+	free(lst);
+}
+
+void	ft_lstdel_front(struct s_list **lst, void (*del) (void *))
+{
+	struct s_list	*tmp;
+
+	if (*lst == NULL)
+		return ;
+	tmp = *lst;
+	*lst = (*lst)->next;
+	if (del)
+		return (ft_lstdelone(tmp, del));
+	free(tmp);
 }

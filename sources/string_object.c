@@ -6,12 +6,13 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:00:21 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 16:19:22 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:41:20 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <stdlib.h>
+#include <string.h>
 
 size_t	tstrncat(struct s_str *str, const char *s, size_t bytes)
 {

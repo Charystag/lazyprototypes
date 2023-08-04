@@ -6,16 +6,16 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 07:50:11 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 10:17:08 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:34:23 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "header.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "libft.h"
 
 /*
 	We know that NAME_MAX is defined to be 254, so having a buffer of 1024
