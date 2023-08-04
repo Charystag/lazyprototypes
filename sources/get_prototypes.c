@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/01 11:51:19 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:09:49 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ const char *filename)
 	}
 	if ((*fstream = fopen(filename, "r")) == NULL)
 	{
-		ft_dprintf(STDERR_FILENO, "Couldn't open file : %s\n", filename);
+		dprintf(STDERR_FILENO, "Couldn't open file : %s\n", filename);
 		tstr_del(*buf);
 		return (1);
 	}
@@ -67,7 +67,7 @@ int tmp_fd, unsigned int *max_distance)
 			break ;
 	}
 	if (! (eof = feof(fstream)))
-		ft_dprintf(STDERR_FILENO, "Error while dealing with file : %s\n", filename);
+		dprintf(STDERR_FILENO, "Error while dealing with file : %s\n", filename);
 	fclose(fstream);
 	tstr_del(buf);
 	return ((eof == 0));

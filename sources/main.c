@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/31 17:30:49 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:09:23 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	entries = NULL;
 	if (get_dir_entries(argv[1], &entries, EXT))
 	{
-		ft_dprintf(STDERR_FILENO, \
+		dprintf(STDERR_FILENO, \
 		"Error while getting entries from directory : %s\n", argv[1]);
 		return (1);
 	}
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 		err = 1;
 	if (remove(TMP_FILE))
 	{
-		ft_dprintf(STDERR_FILENO, "Couldn't remove temporary file\n");
+		dprintf(STDERR_FILENO, "Couldn't remove temporary file\n");
 		err = 1;
 	}
 	return (err);
