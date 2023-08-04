@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/01 11:46:50 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:21:31 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static unsigned int	right_format(t_cchar *line)
 	whitespace_index = 0;
 	while (par != line && ! whitespace_index)
 	{
-		if (isspace(*par) && ! isspace(*(par - 1)))
+		if (space_or_tab(*par) && ! space_or_tab(*(par - 1)))
 			whitespace_index = (par - line);
 		par --;
 	}
