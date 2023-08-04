@@ -6,12 +6,17 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:02:38 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 15:57:21 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:29:14 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <string.h>
+#include <unistd.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <sys/types.h>
 
 static int	stop_creation(const char *destination_path)
 {
