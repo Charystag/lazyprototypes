@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 17:08:08 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/03 17:46:43 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:58:53 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 						"if [ \"$filename\" = \"\" ]\n" \
 						"then\n" \
 						"\techo \"No filename provided\"\n" \
-						"\texit 1\n" \
+						"\texit 2\n" \
 						"fi\n\n" \
 						"vim \"+Stdheader\" \"+wq\" $filename\n" \
 						"exit 0\n"
