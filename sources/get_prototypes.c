@@ -6,11 +6,15 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 10:48:42 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 10:32:40 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:36:26 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include <string.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 static int	write_prototype(struct s_str *buf, int *swit, int tmp_fd, \
 unsigned int *max_distance)
