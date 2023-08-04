@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 16:18:26 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:30:59 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define CBEG "/*"
 # define CEND "*/"
 # define INT "_int"
-# include "libft.h"
 # define BUFF_SIZE 100
 # define MAX_LINE_LEN 79
 # define MAX_FUNC_LINES 4
@@ -48,51 +47,19 @@
 # define DEBUG_OUT 2
 # define MIN(a,b) (((a) < (b)) ? (a) : (b))
 # include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <ctype.h>
-# include <fcntl.h>
-enum e_infos
+
+struct s_list
 {
-	COMPLETE,
-	INCOMPLETE,
-	NO_FUNCTION
+	void			*content;
+	struct s_list	*next;
 };
 
-enum e_errors
-{
-	MEMORY = 10,
-	COMMAND,
-};
-
-struct s_string_pointer
-{
-	char	**str;
-	size_t	*size;
-};
-
-struct s_string
+struct s_str
 {
 	char	*str;
+	size_t	len;
 	size_t	size;
 };
 
-struct s_descriptors
-{
-	int		dst;
-	int		tmp;
-	FILE	*src;
-};
-
-typedef struct s_descriptors	t_descriptors;
-
-typedef const char				t_cchar;
-
-typedef struct s_string_pointer	t_pstring;
-
-typedef struct s_string			t_string;
-
-typedef const int				t_cint;
 
 #endif
