@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/08/03 12:01:55 by nsainton         ###   ########.fr        #
+#    Updated: 2023/08/04 16:45:43 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,23 +36,13 @@ CC= cc
 
 CFLAGS= -Wall -Wextra
 
-LIBS := libs
-
-LIBS_DIR ?= $(addprefix $(shell pwd)/, $(LIBS))
-
-LFT_DIR:= $(LIBS_DIR)/libft
-
-LFT_URL:= "nsainton/libft.git"
-
 ARCHITECTURE= $(shell uname)
 
 TABLEN := 4
 
 EXT := .c
 
-export LIBS_DIR
-export C_INCLUDE_PATH= $(INCS_DIR):$(LFT_DIR)/$(INCS_DIR)
-export LIBRARY_PATH= $(LFT_DIR)
+export C_INCLUDE_PATH= $(INCS_DIR)
 
 #Color codes for pretty printing
 BEGIN=\033[
@@ -106,12 +96,11 @@ export header_header
 makedebug:
 	@echo $(DEPS)
 
-all: | $(LFT_DIR)
-	$(MAKE) -C $(LFT_DIR)
+all: 
 	$(MAKE) $(NAME)
 
 $(NAME): $(OBJS) | $(DEPS_DIR)
-	$(CC) $(CFLAGS) $(OPT) $(GG) $(OBJS) -lft -o $(NAME)
+	$(CC) $(CFLAGS) $(OPT) $(GG) $(OBJS) -o $(NAME)
 	echo "$(BEGIN)$(CYAN)m"
 	echo "$$header_header"
 	echo "$(END)"
@@ -126,10 +115,6 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c Makefile
 	$(CC) $(CFLAGS) $(OPT) $(GG) -MD -MF $(DEPS_DIR)/$*.d -c $< \
 	-DTABLEN=$(TABLEN) -DEXT='"$(EXT)"' -o $@
 
-$(LFT_DIR):
-	git clone git@github.com:$(LFT_URL) $(LFT_DIR) || \
-	git clone https://github.com/$(LFT_URL) $(LFT_DIR)
-
 .PHONY: clean
 clean:
 	$(RM) -r $(DEPS_DIR)
@@ -139,10 +124,6 @@ clean:
 .PHONY: oclean
 oclean:
 	$(RM) $(NAME)
-
-.PHONY: lclean
-lclean:
-	$(RM) -r $(LIBS_DIR)
 
 .PHONY: fclean
 fclean:
