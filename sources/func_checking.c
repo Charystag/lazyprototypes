@@ -6,11 +6,13 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:06:43 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 15:57:49 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:38:44 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include <ctype.h>
+#include <string.h>
 
 static unsigned int	right_format(const char *line)
 {
