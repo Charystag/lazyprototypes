@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 08:16:59 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:18:26 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # endif
 # define PROG_NAME "header"
 # define DEBUG_OUT 2
+# define MIN(a,b) (((a) < (b)) ? (a) : (b))
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
