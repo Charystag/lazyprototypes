@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 19:53:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 10:09:23 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:59:24 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Examples :\n\
 int	main(int argc, char **argv)
 {
 	unsigned int	max_distance;
-	t_list			*entries;
+	struct s_list	*entries;
 	int				err;
 
 	if (argc < 3)
