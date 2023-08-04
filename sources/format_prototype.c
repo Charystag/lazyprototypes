@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 10:50:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/07/30 16:28:58 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:13:32 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ unsigned int *tabs_number)
 		return (0);
 	while (parenthesis != prototype)
 	{
-		if (! isspace(*parenthesis) && isspace(*(parenthesis - 1)))
+		if (! space_or_tab(*parenthesis) && space_or_tab(*(parenthesis - 1)))
 			break ;
 		parenthesis--;
 	}
 	func_name = parenthesis;
 	while (parenthesis != prototype)
 	{
-		if (isspace(*parenthesis) && !isspace(*(parenthesis - 1)))
+		if (space_or_tab(*parenthesis) && !space_or_tab(*(parenthesis - 1)))
 			break ;
 		parenthesis--;
 	}
