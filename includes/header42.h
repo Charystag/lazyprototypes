@@ -29,9 +29,39 @@
 						"plugin_dir=\"$HOME/.vim/plugin\"\n" \
 						"plugin_name=\"stdheader.vim\"\n" \
 						"plugin_path=\"$plugin_dir/$plugin_name\"\n" \
+						"refused_install=\"/tmp/.no_plugin_install_42dynamicheader\"\n" \
 						"filename=\"$1\"\n" \
 						"vim_path=\"$(whereis vim | "\
 						"awk -F ':' '{print $2}')\"\n\n" \
+						"install_script() {\n" \
+						"\tif [ -f $refused_install ]\n" \
+						"\tthen\n" \
+						"\t\techo $refused_install found\n" \
+						"\t\techo No script will be installed\n" \
+						"\t\texit 5\n" \
+						"\tfi\n" \
+						"\techo \"No stdheader plugin found\"\n" \
+						"\techo -n \"Would you like to install stdheader.vim plugin ? [y/n]\"\n" \
+						"\tread -n1 reply\n" \
+						"\tuntil [[ $reply = [yYnN] ]]\n" \
+						"\tdo\n" \
+						"\t\techo \"Unrecognized character, try again\"\n" \
+						"\t\techo -n \"Would you like to install stdheader.vim plugin ? [y/n]\"\n" \
+						"\t\tread -n1 reply\n" \
+						"\tdone\n" \
+						"\tcase \"$reply\" in\n" \
+						"\t[yY] )\n" \
+						"\t\techo \"Script will be installed at $plugin_path\" ;;\n" \
+						"\t[nN] )\n" \
+						"\t\tcat <<-NO_INSTALL\n" \
+						"\t\tNo script will be installed\n" \
+						"\t\tIf you wish to change your choice you can either install it \n" \
+						"yourself or remove the file $refused_install\n" \
+						"\t\tNO_INSTALL\n" \
+						"\t\ttouch $refused_install\n" \
+						"\t\texit 5 ;;\n" \
+						"\tesac\n" \
+						"}\n\n" \
 						"if [ \"$vim_path\" = \"\" ]\n" \
 						"then\n" \
 						"\tcat <<-VIM\n" \
@@ -44,6 +74,7 @@
 						"fi\n\n" \
 						"if [ ! -f $plugin_path ]\n" \
 						"then\n" \
+						"\tinstall_script\n" \
 						"\tmkdir -p $plugin_dir\n" \
 						"\tif [ $(( $? )) -ne 0 ]\n" \
 						"\tthen\n" \
