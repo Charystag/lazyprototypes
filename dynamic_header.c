@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 17:00:35 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/05 10:10:43 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/05 10:26:03 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,11 @@ const char *script_name)
 	int			status;
 	int			pid;
 
-	if (environ == NULL)
+	if (*environ == NULL)
+	{
+		fprintf(stderr, "No environment\n");
 		return (1);
+	}
 	if (get_path(script_name, script_path) || write_script(script_path))
 		return (1);
 	pid = fork();
