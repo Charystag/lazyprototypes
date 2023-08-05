@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 17:08:08 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 16:58:53 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/05 09:02:32 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,19 @@
 						"plugin_dir=\"$HOME/.vim/plugin\"\n" \
 						"plugin_name=\"stdheader.vim\"\n" \
 						"plugin_path=\"$plugin_dir/$plugin_name\"\n" \
-						"filename=\"$1\"\n\n" \
+						"filename=\"$1\"\n" \
+						"vim_path=\"$(whereis vim | "\
+						"awk -F ':' '{print $2}')\"\n\n" \
+						"if [ \"$vim_path\" = \"\" ]\n" \
+						"then\n" \
+						"\tcat <<-VIM\n" \
+						"\t\tvim command is not installed, you need vim to " \
+						"use the dynamic header\n" \
+						"\t\tyou can install vim by running : \\`sudo apt " \
+						"install vim\\`\n" \
+						"\t\tVIM\n" \
+						"\texit 3\n" \
+						"fi\n\n" \
 						"if [ ! -f $plugin_path ]\n" \
 						"then\n" \
 						"\tmkdir -p $plugin_dir\n" \
