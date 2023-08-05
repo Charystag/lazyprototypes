@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 16:30:59 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/05 09:08:18 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@
 # define INT "_int"
 # define BUFF_SIZE 100
 # define MAX_LINE_LEN 79
-# define MAX_FUNC_LINES 4
 # ifndef TABLEN
 #  define TABLEN 4
 # endif
-# define FILE_NAME_SIZE 1024
+# define PATH_SIZE 1024
 # define TMP_FILE "/tmp/tmp_header"
 # ifndef EXT
 #  define EXT ".c"
