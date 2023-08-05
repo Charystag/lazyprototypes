@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/05 10:36:44 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/05 10:43:55 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 #  define EXT ".c"
 # endif
 # define PROG_NAME "header"
-# define SCRIPT_NAME "42dynamicheaderscript.sh"
+# define SCRIPT_PATH "/tmp/42dynamicheaderscript.sh"
 # define DEBUG_OUT 2
 # define MIN(a,b) (((a) < (b)) ? (a) : (b))
 # include <stdio.h>

@@ -49,6 +49,10 @@ void			ft_lstclear(struct s_list **lst, void (*del) (void *));
 
 void			ft_lstdel_front(struct s_list **lst, void (*del) (void *));
 
+//Functions from file : dynamic_header.c
+int				dynamic_header(const char *header_name, \
+const char *script_path);
+
 //Functions from file : get_codeline.c
 int				get_codeline(struct s_str **buff, FILE *fstream);
 

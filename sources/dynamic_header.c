@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 17:00:35 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/05 10:26:03 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/05 10:47:26 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <stdlib.h>
-# define SCRIPT_NAME "42dynamicheaderscript.sh"
 
 extern char **environ;
 
@@ -49,9 +48,9 @@ static int	write_script(const char *script_path)
 	int		script_fd;
 	int		err;
 
-	if (! access(script_path, F_OK) && remove(script_path) == -1)
+	if (! access(script_path, F_OK) && unlink(script_path) == -1)
 	{
-		fprintf(stderr, "Can't remove : %s\n", script_path);
+		fprintf(stderr, "Can't unlink : %s\n", script_path);
 		return (1);
 	}
 	if ((script_fd = open(script_path, O_CREAT | O_WRONLY, 00700)) == -1)
@@ -74,10 +73,10 @@ const char *header_path)
 	*(args + 2) = NULL;
 }
 
-static int	dynamic_header(const char *header_path, \
-const char *script_name)
+int	dynamic_header(const char *header_name, \
+const char *script_path)
 {
-	char		script_path[PATH_SIZE];
+	char		header_path[PATH_SIZE];
 	const char	*args[3];
 	int			status;
 	int			pid;
@@ -87,7 +86,7 @@ const char *script_name)
 		fprintf(stderr, "No environment\n");
 		return (1);
 	}
-	if (get_path(script_name, script_path) || write_script(script_path))
+	if (get_path(header_name, header_path) || write_script(script_path))
 		return (1);
 	pid = fork();
 	if (pid < 0)
@@ -103,17 +102,6 @@ const char *script_name)
 		exit(1);
 	}
 	wait(&status);
+	unlink(script_path);
 	return (status);
-}
-
-int	main(int argc, char **argv)
-{
-	(void)argc;
-	(void)argv;
-	if (dynamic_header("/home/nosainto/Documents/t.h", SCRIPT_NAME))
-	{
-		fprintf(stderr, "Using default header instead\n");
-		return (1);
-	}
-	return (0);
 }
