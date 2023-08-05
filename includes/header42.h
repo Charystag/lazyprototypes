@@ -6,12 +6,25 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 17:08:08 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/05 10:20:32 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/05 11:17:04 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER42_H
 # define HEADER42_H
+/*
+	In last vim command. set binary is to enable binary mode (to allow the
+	command noeol to work). set noeol is to prevent vim from adding a newline
+	to the end of file (which would mess with the norm after because we need
+	to continue writing the prototypes).
+	However, here is recalled the definition of the line in the POSIX
+	standard :
+	"3.206 Line
+	A sequence of zero or more non- <newline> characters plus a terminating
+	<newline> character"
+	So don't get tempted to add it in your vimrc, because it could mess with
+	some over projects you're building after.
+*/
 # define HEADER_SCRIPT "#!/bin/sh\n" \
 						"plugin_dir=\"$HOME/.vim/plugin\"\n" \
 						"plugin_name=\"stdheader.vim\"\n" \
@@ -60,6 +73,7 @@
 						"\techo \"No filename provided\"\n" \
 						"\texit 2\n" \
 						"fi\n\n" \
-						"vim \"+Stdheader\" \"+wq\" $filename\n" \
+						"vim \"+set binary\" \"+set noeol\" \"+Stdheader\" " \
+						"\"+wq\" $filename\n" \
 						"exit 0\n"
 #endif
