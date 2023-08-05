@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 17:08:08 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/05 09:02:32 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/05 10:20:32 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 						"if [ ! -f $plugin_path ]\n" \
 						"then\n" \
 						"\tmkdir -p $plugin_dir\n" \
+						"\tif [ $(( $? )) -ne 0 ]\n" \
+						"\tthen\n" \
+						"\t\texit 4\n" \
+						"\tfi\n" \
 						"\tcurl -fsSL https://raw.githubusercontent.com/" \
 						"42Paris/42header/master/plugin/stdheader.vim -o \"" \
 						"$plugin_path\"\n" \
