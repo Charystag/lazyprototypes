@@ -8,11 +8,11 @@ To use the header script without any install requirements, just clone the reposi
 This will create inside said repository an executable file called `header`.
 You will then be able to use the header script in two different ways :
 
-1. By running `./header SOURCES_DIR FILE_TO_CREATE [FILES_TO_INCLUDE]`<br/>
-	as in `./header sources includes/header.h include1.h include2.h`
+1. By running `./lazyheader SOURCES_DIR FILE_TO_CREATE [FILES_TO_INCLUDE]`<br/>
+	as in `./lazyheader sources includes/header.h include1.h include2.h`
 	Beware that all the files specified from `include1.h` will have their full provided path included.
 	So don't write `includes/include1.h` when you want to include `include1.h`
-2. By running `./header SOURCES_DIR FILE_TO_CREATE`<br/>
+2. By running `./lazyheader SOURCES_DIR FILE_TO_CREATE`<br/>
 	That way, you will have to include manually all the files you need for you project to compile properly
 
 ### Local install

@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 11:02:38 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/05 10:56:23 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/06 03:54:13 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,7 @@ int	header_header(const char *header, char **includes)
 		header_fd = open(header, O_CREAT | O_WRONLY | O_TRUNC, 00644);
 	}
 	else
-	{
 		header_fd = open(header, O_APPEND | O_WRONLY);
-		fputs("Success\n", stdout);
-		fprintf(stdout, "This is the header fd : %d\n", header_fd);
-	}
 	if (header_fd < 0)
 	{
 		fputs("No header fd\n", stderr);
