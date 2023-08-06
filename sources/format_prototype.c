@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 10:50:03 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/04 16:32:29 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/08/06 05:14:33 by nsainton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ const unsigned int tabs_number)
 	prototype + end_of_types, 0));
 }
 
-char	*format_prototype(const char *prototype, const unsigned int max_distance, unsigned int *prototype_len)
+char	*format_prototype(const char *prototype, \
+const unsigned int max_distance, unsigned int *prototype_len)
 {
 	char			*formated_proto;
 	unsigned int	len;
