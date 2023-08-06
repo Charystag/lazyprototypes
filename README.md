@@ -1,6 +1,6 @@
-# Header Script
+# Lazy Header Script
 
-## How to use me ?
+## How to use it ?
 
 ### One time use (no install required)
 
