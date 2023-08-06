@@ -266,7 +266,7 @@ wrong name, author and dates. However the file you will get is still norm compli
 2. Delete the header in the final folder and use a 42 header plugin to replace it with your own header
 3. Wait for the next version of the script that will bring a fix to that an a lot more options.
 
-> Update from August 6<sup>th</sup> 2023 : The script now installs the plugin stdheader.vim and runs it instead of
+> Update from August 6<sup>th</sup> 2023 : The script now installs the plugin stdheader.vim, runs it 
 > and relies on default header if there is an execution problem. Need to update how-it-works to explain new steps
 
 # Final Words
