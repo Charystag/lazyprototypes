@@ -260,11 +260,14 @@ by the user.
 ## The 42 header
 
 At the data at which this version is written (August 1<sup>st</sup> 2023) the 42 header you will get is a 42 header with the
-wrong name, author and dates. However the file you will get is still norm compliant. From now on you have 3 options
+wrong name, author and dates. However the file you will get is still norm compliant. From now on you have 3 options.
 
 1. Let the 42 header as it is (recommended if you don't want to modify your header at all)
 2. Delete the header in the final folder and use a 42 header plugin to replace it with your own header
 3. Wait for the next version of the script that will bring a fix to that an a lot more options.
+
+> Update from August 6<sup>th</sup> 2023 : The script now installs the plugin stdheader.vim and runs it instead of
+> and relies on default header if there is an execution problem. Need to update how-it-works to explain new steps
 
 # Final Words
 
