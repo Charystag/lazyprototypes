@@ -5,11 +5,11 @@
 ### One time use (no install required)
 
 To use the header script without any install requirements, just clone the repository and run `make`.
-This will create inside said repository an executable file called `header`.
+This will create inside said repository an executable file called `lazyheader`.
 You will then be able to use the header script in two different ways :
 
 1. By running `./lazyheader SOURCES_DIR FILE_TO_CREATE [FILES_TO_INCLUDE]`<br/>
-	as in `./lazyheader sources includes/header.h include1.h include2.h`
+	as in `./lazyheader sources includes/header_name.h include1.h include2.h`
 	Beware that all the files specified from `include1.h` will have their full provided path included.
 	So don't write `includes/include1.h` when you want to include `include1.h`
 2. By running `./lazyheader SOURCES_DIR FILE_TO_CREATE`<br/>
@@ -21,7 +21,7 @@ If you like the header script enough to want it to stay permanently on your comp
 This will compile the script and move the binary into a folder called .local/bin/ which resides in your home folder.
 If you already have the norminette, it is very likely that this folder already exists and that the path to
 this folder is already in your path variable.
-If not, or if you see that running the command `header` doesn't print the help message, add the following line to
+If not, or if you see that running the command `lazyheader` doesn't print the help message, add the following line to
 your "run commands" file (probably located at `~/.zshrc` or `~/.bashrc`) : `export PATH="$PATH:$HOME/.local/bin"`
 
 ## What is it meant to do ?
