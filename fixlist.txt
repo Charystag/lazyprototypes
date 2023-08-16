@@ -1,1 +1,2 @@
 When argument is something of the form : struct s_type ** identifier. I need to suppress the ' ' between the ** and the last star
+Func ptr management
