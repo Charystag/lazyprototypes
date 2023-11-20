@@ -1,4 +1,4 @@
-# Lazy Header Script
+# Lazy Prototypes Script
 
 ## How to use it ?
 
