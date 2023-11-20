@@ -6,11 +6,11 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/08/06 03:51:40 by nsainton         ###   ########.fr        #
+#    Updated: 2023/11/20 18:21:29 by nsainton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME:= lazyheader
+NAME:= lazyprototypes
 
 SRCS_DIR:= sources
 
