@@ -6,7 +6,7 @@
 /*   By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:35:12 by nsainton          #+#    #+#             */
-/*   Updated: 2023/08/06 03:52:18 by nsainton         ###   ########.fr       */
+/*   Updated: 2023/11/21 22:20:14 by nsainto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 "/* ************************************************************************** */\n"\
 "/*                                                                            */\n"\
 "/*                                                        :::      ::::::::   */\n"\
-"/*   lazyheader.h                                       :+:      :+:    :+:   */\n"\
+"/*   lazyprototypes.h                                   :+:      :+:    :+:   */\n"\
 "/*                                                    +:+ +:+         +:+     */\n"\
 "/*   By: lazydev <lazydev@student.42.fr>            +#+  +:+       +#+        */\n"\
 "/*                                                +#+#+#+#+#+   +#+           */\n"\
@@ -42,7 +42,7 @@
 # ifndef EXT
 #  define EXT ".c"
 # endif
-# define PROG_NAME "lazyheader"
+# define PROG_NAME "lazyprototypes"
 # define SCRIPT_PATH "/tmp/42dynamicheaderscript.sh"
 # define DEBUG_OUT 2
 # define MIN(a,b) (((a) < (b)) ? (a) : (b))
