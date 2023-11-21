@@ -11,7 +11,7 @@
 *.out
 
 # Header executable #
-lazyheader
+lazyprototypes
 
 # Archive files #
 *.a
