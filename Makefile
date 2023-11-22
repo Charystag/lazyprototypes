@@ -6,7 +6,7 @@
 #    By: nsainton <nsainton@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 11:32:59 by nsainton          #+#    #+#              #
-#    Updated: 2023/11/20 18:21:29 by nsainton         ###   ########.fr        #
+#    Updated: 2023/11/22 19:31:43 by nsainto          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,6 +151,7 @@ install:
 	$(MAKE)
 	mkdir -p $$HOME/.local/bin
 	mv $(NAME) $$HOME/.local/bin
+	echo "$(NAME) Successfully installed at $$HOME/.local/bin"
 
 .PHONY: uninstall
 uninstall:
